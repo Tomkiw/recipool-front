@@ -1,0 +1,268 @@
+/* ===== Footer (mobile-first, 320+ → 393 → 768 → 1440) ===== */
+
+.footer {
+    background-color: #3d2218;
+    width: 100%;
+    margin-top: auto;
+}
+
+.inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    padding: 24px 59px;
+}
+
+.logoLink {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: opacity 200ms ease;
+}
+
+.logoLink:hover {
+    opacity: 0.85;
+}
+
+.logoLink:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 4px;
+}
+
+.logo {
+    display: block;
+    height: 46px;
+    width: auto;
+    object-fit: contain;
+}
+
+.copyright {
+    margin: 0;
+    color: #ffffff;
+
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14.63px;
+    letter-spacing: 0;
+    text-align: center;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+}
+
+.link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19.5px;
+    letter-spacing: 0;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 4px;
+    transition: color 200ms ease, opacity 200ms ease;
+}
+
+.link:hover {
+    color: #d9d9d9;
+}
+
+.link:focus-visible {
+    outline: 1px solid #ffffff;
+    outline-offset: 2px;
+}
+
+.link:active {
+    opacity: 0.85;
+}
+
+@media (min-width: 768px) {
+    .inner {
+        padding: 24px 59px;
+        gap: 32px;
+    }
+
+    .links {
+        flex-direction: row;
+        gap: 32px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .inner {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 24px 108px;
+        gap: 24px;
+    }
+
+    .copyright {
+        text-align: left;
+    }
+}
+
+button.link {
+    background: transparent;
+    border: none;
+    font: inherit;
+}
+
+.backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(61, 34, 24, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 16px;
+    backdrop-filter: blur(2px);
+}
+
+.modal {
+    position: relative;
+    background-color: #3d2218;
+    border-radius: 12px;
+    padding: 40px 24px 32px;
+    max-width: 360px;
+    width: 100%;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    text-align: center;
+}
+
+.modalClose {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: opacity 200ms ease;
+}
+
+.modalClose:hover {
+    opacity: 0.75;
+}
+
+.modalClose:focus-visible {
+    outline: 1px solid #ffffff;
+    outline-offset: 2px;
+}
+
+.modalTitle {
+    margin: 0;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #ffffff;
+}
+
+.modalActions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.modalAction,
+.modalActionPrimary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid #ffffff;
+    background: transparent;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19.5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+}
+
+.modalAction:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.modalActionPrimary {
+    background-color: #9b6c43;
+    border-color: #9b6c43;
+}
+
+.modalActionPrimary:hover {
+    background-color: #6d554b;
+    border-color: #6d554b;
+}
+
+.modalAction:focus-visible,
+.modalActionPrimary:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
+
+@media (min-width: 768px) and (max-width: 1439px) {
+    .inner {
+        gap: 34px;
+    }
+    .link {
+        padding: 0;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1439px) {
+    .inner {
+        gap: 34px;
+    }
+    .link {
+        padding: 0;
+    }
+}
+
+.logo {
+    width: 165px;
+    height: 46px;
+    fill: currentColor;
+    color: #ffffff;
+    display: block;
+}
+
+.modalCloseIcon {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    fill: none;
+    color: #ffffff;
+}
