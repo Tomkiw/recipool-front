@@ -1,0 +1,67 @@
+/* ===== Header (mobile-first, 320+ → 393 → 768 → 1440) ===== */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background-color: #3d2218;
+    width: 100%;
+    z-index: 999;
+    position: sticky;
+    top: 0;
+}
+
+.inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 16px;
+    min-height: 74px;
+}
+
+.logoLink {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: opacity 200ms ease;
+}
+
+.logoLink:hover {
+    opacity: 0.85;
+}
+
+.logoLink:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 4px;
+}
+
+.logo {
+    display: block;
+    height: 46px;
+    width: auto;
+    object-fit: contain;
+}
+
+@media (min-width: 768px) {
+    .inner {
+        padding: 14px 32px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .inner {
+        padding: 14px 108px;
+    }
+}
+
+.logo {
+    width: 165px;
+    height: 46px;
+    fill: currentColor;
+    color: #ffffff;
+    display: block;
+}

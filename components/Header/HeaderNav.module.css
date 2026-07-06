@@ -1,0 +1,253 @@
+/* ===== HeaderNav (mobile-first) ===== */
+
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.burger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: opacity 200ms ease;
+}
+
+.burger:hover {
+    opacity: 0.75;
+}
+
+.burger:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
+
+.desktopList {
+    display: none;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mobilePanel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 74px;
+    background-color: #3d2218;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: max-height 280ms ease, opacity 200ms ease, visibility 0s linear 280ms;
+}
+
+.mobilePanelOpen {
+    max-height: 80vh;
+    opacity: 1;
+    visibility: visible;
+    transition: max-height 320ms ease, opacity 200ms ease, visibility 0s linear 0s;
+}
+
+.mobileList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    list-style: none;
+    margin: 0;
+    padding: 14px 16px 40px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+}
+
+.link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19.5px;
+    letter-spacing: 0;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 4px 4px;
+    transition: color 200ms ease, background-color 200ms ease, opacity 200ms ease;
+}
+
+.link:hover {
+    color: #d9d9d9;
+}
+
+.link:focus-visible {
+    outline: 1px solid #ffffff;
+    outline-offset: 2px;
+}
+
+.link:active {
+    opacity: 0.85;
+}
+
+.cta {
+    background-color: #9b6c43;
+    color: #ffffff;
+    padding: 12px 16px;
+    border-radius: 8px;
+    line-height: 19.5px;
+}
+
+.mobileList .cta {
+    width: 100%;
+}
+
+.cta:hover {
+    background-color: #6d554b;
+    color: #ffffff;
+}
+
+.cta:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
+
+.userItem {
+    gap: 16px;
+}
+
+.user {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #ffffff;
+}
+
+.avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #9b6c43;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1;
+    object-fit: cover;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.userName {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 14.6px;
+    color: #ffffff;
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.divider {
+    display: inline-block;
+    width: 1px;
+    height: 39px;
+    background-color: #ffffff;
+}
+
+.iconButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: opacity 200ms ease;
+}
+
+.iconButton:hover {
+    opacity: 0.75;
+}
+
+.iconButton:focus-visible {
+    outline: 1px solid #ffffff;
+    outline-offset: 2px;
+}
+
+@media (min-width: 768px) {
+    .burger {
+        display: none;
+    }
+
+    .desktopList {
+        display: flex;
+    }
+
+    .mobilePanel {
+        display: none;
+    }
+
+    .link {
+        font-size: 12px;
+        line-height: 14.6px;
+    }
+
+    .cta {
+        font-size: 16px;
+        line-height: 19.5px;
+        padding: 12px 16px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .desktopList {
+        gap: 32px;
+    }
+}
+
+.linkActive {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 6px;
+}
+
+.cta.linkActive {
+    text-decoration: none;
+}
+
+.icon32 {
+    width: 32px;
+    height: 32px;
+    stroke: currentColor;
+    fill: none;
+    color: #ffffff;
+}
+
+.icon24 {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    fill: none;
+    color: #ffffff;
+}
