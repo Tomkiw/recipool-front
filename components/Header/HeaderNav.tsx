@@ -6,7 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import css from './HeaderNav.module.css';
 import { useAuthStore } from '@/lib/store/authStore';
 import { logout } from '@/lib/api/clientApi';
-import LogoutModal from '@/components/LogoutModal/Modal';
+import LogoutModal from '@/components/LogoutModal/LogoutModal';
 
 const HeaderNav = () => {
   const [isOpen, setIsOpen] = useState(false);

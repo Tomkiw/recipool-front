@@ -1,0 +1,36 @@
+.navContainer {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+    margin-bottom: 16px;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--black);
+    padding-block: 0px 4px;
+    border-bottom: 1px solid transparent;
+    transition: opacity 250ms ease, border-color 250ms ease;
+}
+
+.link:hover,
+.link:focus-visible {
+    outline: none;
+    opacity: 0.5;
+}
+
+.link.activeLink {
+    opacity: 1;
+    border-bottom-color: var(--black);
+}
+
+.link:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+    pointer-events: none;
+}
