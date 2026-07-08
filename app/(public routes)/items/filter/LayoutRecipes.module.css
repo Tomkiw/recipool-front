@@ -1,0 +1,18 @@
+.container {
+    padding: 48px 16px;
+    font-family: var(--font-montserrat), sans-serif;
+    background-color: #fbfcf8;
+    ;
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 48px 32px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .container {
+        padding: 48px 108px;
+    }
+}

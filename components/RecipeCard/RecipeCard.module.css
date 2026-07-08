@@ -1,0 +1,235 @@
+.card {
+    width: 100%;
+    border-radius: 16px;
+    background-color: #faf3e0;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.image {
+    width: 100%;
+    height: 230px;
+    border-radius: 8px;
+    object-fit: cover;
+    object-position: center;
+    margin-bottom: 16px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    min-height: 58px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.timeBox {
+    height: 24px;
+    min-width: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 5px 8px;
+    background: white;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.timeIcon {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+}
+
+.descriptionBox {
+    min-height: 83px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.description {
+    line-height: 1.55;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+    margin-top: auto;
+}
+
+.learnMore {
+    font-weight: 600;
+    flex: 1;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    transition:
+        background-color 300ms,
+        color 300ms,
+        border-color 300ms;
+    cursor: pointer;
+}
+
+.favorite {
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    background: transparent;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition:
+        background-color 300ms,
+        border-color 300ms,
+        color 300ms;
+}
+
+.learnMore:hover,
+.favorite:hover {
+    background: #9b6c43;
+    color: white;
+    border-color: #9b6c43;
+}
+
+.learnMore:active,
+.favorite:active {
+    background: #9b6c43;
+    color: white;
+    box-shadow:
+        0 0 0 6px #4e46b41f,
+        0 0 0 2px white;
+}
+
+.favoriteActive {
+    background: #9b6c43;
+    color: white;
+    border: none;
+}
+
+.favoriteActive:hover {
+    background: transparent;
+}
+
+.loader {
+    width: 18px;
+    height: 18px;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+.saveIcon {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+}
+
+@media (min-width: 393px) {
+    .card {
+        width: 361px;
+        min-height: 483px;
+        padding: 12px;
+    }
+
+    .image {
+        width: 337px;
+    }
+}
+
+@media (min-width: 768px) {
+    .card {
+        width: 339px;
+    }
+
+    .image {
+        width: 315px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .card {
+        width: 288px;
+        min-height: 431px;
+    }
+
+    .image {
+        width: 264px;
+        height: 178px;
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.dots {
+    display: flex;
+    gap: 4px;
+}
+
+.dots span {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: bounce 0.8s infinite alternate;
+}
+
+.dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+    to {
+        transform: translateY(-4px);
+        opacity: 0.5;
+    }
+}

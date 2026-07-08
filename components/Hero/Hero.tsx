@@ -1,7 +1,7 @@
 'use client';
 
-import { fetchRecipes } from '@/lib/api/recipesApi';
-import SearchBox from '../SearchBox/SearchBox';
+import { fetchRecipes } from '@/lib/api/itemsApi';
+import SearchBox from '@/components/SearchBox/SearchBox';
 import css from './Hero.module.css';
 import { useFiltersStore } from '@/lib/store/filtersStore';
 import style from '@/app/Home.module.css';

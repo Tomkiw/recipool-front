@@ -1,0 +1,121 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal {
+  font-family: var(--font-montserrat), sans-serif;
+  line-height: 1.2;
+  position: relative;
+  background-color: #faf3e0;
+  max-width: 362px;
+  width: 100%;
+  padding: 56px 32px 24px;
+  border-radius: 32px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.closeButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  transition: opacity 0.2s ease;
+  color: #111;
+}
+
+.closeButton:hover {
+  opacity: 0.7;
+}
+
+.closeIcon {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: #000;
+  stroke-width: 1.5;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 32px;
+  text-align: center;
+}
+
+.description {
+  line-height: 155%;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.loginButton,
+.registerButton {
+  font-family: inherit;
+  font-weight: 600;
+  border-radius: 8px;
+  width: 100%;
+  height: 54px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.loginButton {
+  background-color: transparent;
+  border: 1px solid #111;
+}
+
+.loginButton:hover {
+  background-color: #f9f9f9;
+  border-color: #111111;
+}
+
+.registerButton {
+  background-color: #9b6c43;
+  color: #ffffff;
+  border: transparent;
+}
+.registerButton:hover {
+  background-color: #3d2218;
+}
+
+@media (min-width: 768px) {
+  .modal {
+    width: 400px;
+    padding: 56px 32px;
+  }
+
+  .buttonGroup {
+    flex-direction: row;
+    gap: 16px;
+  }
+
+  .loginButton,
+  .registerButton {
+    height: 36px;
+  }
+}

@@ -1,0 +1,29 @@
+.container {
+    padding: 48px 16px;
+    font-family: var(--font-montserrat), sans-serif;
+    background-color: #fbfcf8;
+    margin: 0 auto;
+
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 48px 0;
+        max-width: 704px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .container {
+        padding: 46px 0;
+        max-width: 1225px;
+    }
+}
+
+.title {
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 40px;
+    color: var(--black);
+    margin-bottom: 16px;
+}
