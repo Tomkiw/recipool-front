@@ -9,6 +9,11 @@ import AuthProvider from '@/components/AuthProvider/AuthProvider';
 import 'modern-normalize';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ||
+      process.env.NEXT_PUBLIC_API_URL ||
+      'http://localhost:3000'
+  ),
   title: 'Tasteorama',
   description: 'Discover, save, and share your favorite recipes.',
   icons: {
