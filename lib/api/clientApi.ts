@@ -16,12 +16,20 @@ type CheckSessionRequest = {
   success: boolean;
 };
 
-export type UpdateUserRequest = {
-  username?: string;
+export type UpdateAvatarResponse = {
+  url: string;
 };
 
-export const updateMe = async (payload: UpdateUserRequest) => {
-  const res = await nextServer.patch<User>('/users/current', payload);
+export const updateAvatar = async (
+  file: File
+): Promise<UpdateAvatarResponse> => {
+  const formData = new FormData();
+  formData.append('avatar', file);
+
+  const res = await nextServer.patch<UpdateAvatarResponse>(
+    '/users/avatar',
+    formData
+  );
   return res.data;
 };
 
@@ -122,8 +130,8 @@ export interface RemoveFavoriteResponse {
 }
 
 export const getFavoriteRecipes = async (): Promise<Recipe[]> => {
-  const res = await nextServer.get('/recipes/favorites');
-  return res.data;
+  const res = await nextServer.get<FetchRecipesResponse>('/recipes/favorites');
+  return res.data.recipes;
 };
 
 export async function addToFavorites(
@@ -137,6 +145,22 @@ export async function removeFromFavorites(
   recipeId: string
 ): Promise<RemoveFavoriteResponse> {
   const { data } = await nextServer.delete(`/recipes/${recipeId}/favorite`);
+  return data;
+}
+
+export interface DeleteRecipeResponse {
+  status: number;
+  message: string;
+  data: {
+    recipeId: string;
+  };
+}
+
+// Видалити можна лише власний рецепт (бек віддасть 403 для чужого).
+export async function deleteRecipe(
+  recipeId: string
+): Promise<DeleteRecipeResponse> {
+  const { data } = await nextServer.delete(`/recipes/${recipeId}`);
   return data;
 }
 

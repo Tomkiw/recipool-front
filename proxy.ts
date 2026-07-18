@@ -43,6 +43,9 @@ export async function proxy(request: NextRequest) {
             cookieStore.set('accessToken', parsed.accessToken, options);
           if (parsed.refreshToken)
             cookieStore.set('refreshToken', parsed.refreshToken, options);
+          // The backend's auth guard requires sessionId alongside accessToken.
+          if (parsed.sessionId)
+            cookieStore.set('sessionId', parsed.sessionId, options);
         }
         if (isPublicRoute) {
           return NextResponse.redirect(new URL('/', request.url), {

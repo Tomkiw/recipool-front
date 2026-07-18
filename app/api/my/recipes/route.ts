@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
     const cookieStore = await cookies();
     const { searchParams } = request.nextUrl;
 
-    const res = await api('/api/recipes/favorites', {
+    const res = await api('/api/my/recipes', {
       params: {
         page: Number(searchParams.get('page')) || 1,
         perPage: Number(searchParams.get('perPage')) || 12,
@@ -17,12 +17,7 @@ export async function GET(request: NextRequest) {
       headers: { Cookie: cookieStore.toString() },
     });
 
-    // The favorites endpoint counts with "totalFavorites" instead of "totalRecipes".
-    const { totalFavorites, ...rest } = res.data;
-    return NextResponse.json(
-      { ...rest, totalRecipes: totalFavorites ?? 0 },
-      { status: res.status }
-    );
+    return NextResponse.json(res.data, { status: res.status });
   } catch (error) {
     if (isAxiosError(error)) {
       logErrorResponse(error.response?.data);
@@ -31,6 +26,7 @@ export async function GET(request: NextRequest) {
         { status: error.response?.status || 500 }
       );
     }
+    logErrorResponse({ message: (error as Error).message });
     return NextResponse.json(
       { error: 'Internal Server Error' },
       { status: 500 }

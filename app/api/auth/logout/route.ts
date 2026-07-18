@@ -10,10 +10,12 @@ export async function POST() {
   try {
     const accessToken = cookieStore.get('accessToken')?.value;
     const refreshToken = cookieStore.get('refreshToken')?.value;
+    // Must include sessionId — the backend needs it to delete the session.
+    const sessionId = cookieStore.get('sessionId')?.value;
 
     await api.post('/auth/logout', null, {
       headers: {
-        Cookie: `accessToken=${accessToken}; refreshToken=${refreshToken}`,
+        Cookie: `accessToken=${accessToken}; refreshToken=${refreshToken}; sessionId=${sessionId}`,
       },
     });
 

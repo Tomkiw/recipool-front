@@ -39,7 +39,8 @@ export async function DELETE(request: Request, { params }: Props) {
     const cookieStore = await cookies();
     const { id } = await params;
 
-    const res = await api.delete(`/recipes/${id}`, {
+    // NOTE: the backend does not implement recipe deletion yet, so this 404s.
+    const res = await api.delete(`/api/recipes/${id}`, {
       headers: {
         Cookie: cookieStore.toString(),
       },
