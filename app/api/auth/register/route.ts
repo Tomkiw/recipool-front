@@ -28,6 +28,9 @@ export async function POST(req: NextRequest) {
           cookieStore.set('accessToken', parsed.accessToken, options);
         if (parsed.refreshToken)
           cookieStore.set('refreshToken', parsed.refreshToken, options);
+        // The backend's auth guard requires sessionId alongside accessToken.
+        if (parsed.sessionId)
+          cookieStore.set('sessionId', parsed.sessionId, options);
       }
       return NextResponse.json(apiRes.data, { status: apiRes.status });
     }

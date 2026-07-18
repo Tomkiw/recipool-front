@@ -3,8 +3,8 @@ import { cookies } from 'next/headers';
 import { parse } from 'cookie';
 import { checkServerSession } from './lib/api/serverApi';
 
-const privateRoutes = ['/profile', '/recipes/filter'];
-const publicRoutes = ['/sign-in', '/sign-up'];
+const privateRoutes = ['/profile', '/add-recipe'];
+const publicRoutes = ['/auth/login', '/auth/register'];
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -43,6 +43,9 @@ export async function proxy(request: NextRequest) {
             cookieStore.set('accessToken', parsed.accessToken, options);
           if (parsed.refreshToken)
             cookieStore.set('refreshToken', parsed.refreshToken, options);
+          // The backend's auth guard requires sessionId alongside accessToken.
+          if (parsed.sessionId)
+            cookieStore.set('sessionId', parsed.sessionId, options);
         }
         if (isPublicRoute) {
           return NextResponse.redirect(new URL('/', request.url), {
@@ -68,7 +71,7 @@ export async function proxy(request: NextRequest) {
 
   if (!isAuthenticated) {
     if (isPrivateRoute) {
-      return NextResponse.redirect(new URL('/sign-in', request.url));
+      return NextResponse.redirect(new URL('/auth/login', request.url));
     }
     return NextResponse.next();
   }
@@ -86,8 +89,8 @@ export async function proxy(request: NextRequest) {
 export const config = {
   matcher: [
     '/profile/:path*',
-    '/sign-in',
-    '/sign-up',
-    '/recipes/filter/:path*',
+    '/add-recipe',
+    '/auth/login',
+    '/auth/register',
   ],
 };

@@ -92,21 +92,26 @@ interface FetchServerParams {
   perPage: number;
   search?: string;
   category?: string;
+  ingredient?: string;
 }
 
 export async function fetchRecipesServer({
   page,
+  perPage = 12,
   search,
   category,
+  ingredient,
 }: FetchServerParams): Promise<FetchRecipesResponse> {
   try {
     const cookieStore = await cookies();
 
+    // The backend names the title-search param "keyword" and rejects unknown keys.
     const params = {
       page,
-      perPage: 12,
-      search: search || undefined,
+      perPage,
+      keyword: search || undefined,
       category: category || undefined,
+      ingredient: ingredient || undefined,
     };
     const res = await api.get('/api/recipes', {
       params,
@@ -190,7 +195,9 @@ export async function fetchFavoriteRecipesServer(
         Cookie: cookieStore.toString(),
       },
     });
-    return res.data;
+    // The favorites endpoint counts with "totalFavorites" instead of "totalRecipes".
+    const { totalFavorites, ...rest } = res.data;
+    return { ...rest, totalRecipes: totalFavorites ?? 0 };
   } catch (error) {
     console.error('Server fetch favorite recipes error:', error);
     return {

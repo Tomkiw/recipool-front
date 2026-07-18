@@ -4,10 +4,15 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMutation } from '@tanstack/react-query';
-import { addToFavorites, removeFromFavorites } from '@/lib/api/clientApi';
+import {
+  addToFavorites,
+  deleteRecipe,
+  removeFromFavorites,
+} from '@/lib/api/clientApi';
 import { useAuthStore } from '@/lib/store/authStore';
 import { showErrorToast, showSuccessToast } from '@/lib/utils/toast';
 import AuthModal from '../RecipeCardAuthModal/AuthModal';
+import DeleteRecipeModal from '../DeleteRecipeModal/DeleteRecipeModal';
 import type { Recipe } from '@/types/recipe';
 import css from './RecipeCard.module.css';
 
@@ -74,6 +79,31 @@ export default function RecipeCard({
 
     mutation.mutate();
   };
+
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const deleteMutation = useMutation({
+    mutationFn: () => deleteRecipe(recipeId),
+
+    onSuccess: () => {
+      // The backend also drops the recipe from every user's favorites,
+      // so mirror that locally for the current user.
+      if (user && favorites.includes(recipeId)) {
+        setUser({
+          ...user,
+          favorites: favorites.filter((id) => id !== recipeId),
+        });
+      }
+
+      setIsDeleteModalOpen(false);
+      onRemove?.(recipeId);
+      showSuccessToast('Recipe deleted');
+    },
+
+    onError: () => {
+      showErrorToast('Failed to delete recipe');
+    },
+  });
 
   const shouldShowActive =
     variant === 'favorite' || (isAuthenticated && isFavorite);
@@ -146,11 +176,36 @@ export default function RecipeCard({
                 )}
               </button>
             )}
+            {variant === 'own' && (
+              <button
+                type="button"
+                onClick={() => setIsDeleteModalOpen(true)}
+                disabled={deleteMutation.isPending}
+                className={css.delete}
+                aria-label={`Delete ${recipe.title}`}
+              >
+                {deleteMutation.isPending ? (
+                  <span className={css.loader} />
+                ) : (
+                  <svg width="24" height="24" className={css.deleteIcon}>
+                    <use href={'/icons/icons.svg#icon-delete'} />
+                  </svg>
+                )}
+              </button>
+            )}
           </div>
         </div>
       </article>
 
       <AuthModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+
+      <DeleteRecipeModal
+        isOpen={isDeleteModalOpen}
+        recipeTitle={recipe.title}
+        isDeleting={deleteMutation.isPending}
+        onClose={() => setIsDeleteModalOpen(false)}
+        onConfirm={() => deleteMutation.mutate()}
+      />
     </>
   );
 }

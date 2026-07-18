@@ -4,11 +4,18 @@ import { cookies } from 'next/headers';
 import { logErrorResponse } from '../../_utils/utils';
 import { isAxiosError } from 'axios';
 
-export async function GET() {
+type Props = {
+  params: Promise<{ id: string }>;
+};
+
+export async function GET(request: Request, { params }: Props) {
   try {
     const cookieStore = await cookies();
-    const res = await api('/recipes/favorites', {
-      headers: { Cookie: cookieStore.toString() },
+    const { id } = await params;
+    const res = await api(`/api/recipes/${id}`, {
+      headers: {
+        Cookie: cookieStore.toString(),
+      },
     });
     return NextResponse.json(res.data, { status: res.status });
   } catch (error) {
@@ -19,6 +26,7 @@ export async function GET() {
         { status: error.status }
       );
     }
+    logErrorResponse({ message: (error as Error).message });
     return NextResponse.json(
       { error: 'Internal Server Error' },
       { status: 500 }
@@ -26,12 +34,16 @@ export async function GET() {
   }
 }
 
-export async function POST(request: Request) {
+export async function DELETE(request: Request, { params }: Props) {
   try {
     const cookieStore = await cookies();
-    const body = await request.json();
-    const res = await api.post('/recipes/favorites', body, {
-      headers: { Cookie: cookieStore.toString() },
+    const { id } = await params;
+
+    // NOTE: the backend does not implement recipe deletion yet, so this 404s.
+    const res = await api.delete(`/api/recipes/${id}`, {
+      headers: {
+        Cookie: cookieStore.toString(),
+      },
     });
     return NextResponse.json(res.data, { status: res.status });
   } catch (error) {
@@ -42,6 +54,7 @@ export async function POST(request: Request) {
         { status: error.status }
       );
     }
+    logErrorResponse({ message: (error as Error).message });
     return NextResponse.json(
       { error: 'Internal Server Error' },
       { status: 500 }
@@ -49,13 +62,16 @@ export async function POST(request: Request) {
   }
 }
 
-export async function DELETE(request: Request) {
+export async function PATCH(request: Request, { params }: Props) {
   try {
     const cookieStore = await cookies();
+    const { id } = await params;
     const body = await request.json();
-    const res = await api.delete('/recipes/favorites', {
-      data: body,
-      headers: { Cookie: cookieStore.toString() },
+
+    const res = await api.patch(`/recipes/${id}`, body, {
+      headers: {
+        Cookie: cookieStore.toString(),
+      },
     });
     return NextResponse.json(res.data, { status: res.status });
   } catch (error) {
@@ -66,6 +82,7 @@ export async function DELETE(request: Request) {
         { status: error.status }
       );
     }
+    logErrorResponse({ message: (error as Error).message });
     return NextResponse.json(
       { error: 'Internal Server Error' },
       { status: 500 }

@@ -21,17 +21,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: 'Рецепт не знайдено' };
   }
 
+  const description = (recipe.description ?? '').slice(0, 160);
+  const ogImage = recipe.thumb || recipe.image || '/not-found.jpg';
+
   return {
     title: `Recipe: ${recipe.title}`,
-    description: recipe.description.slice(0, 30),
+    description,
     openGraph: {
       title: `Recipe: ${recipe.title}`,
-      description: recipe.description.slice(0, 100),
-      url: `https://notehub.com/notes/${recipeId}`,
+      description,
+      url: `/recipes/${recipeId}`,
       siteName: 'Tasteorama',
       images: [
         {
-          url: 'https://ac.goit.global/fullstack/react/notehub-og-meta.jpg',
+          url: ogImage,
           width: 1200,
           height: 630,
           alt: recipe.title,
