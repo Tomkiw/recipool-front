@@ -1,36 +1,142 @@
+/* =============================================================================
+   DESIGN TOKENS
+   =============================================================================
+   How to re-skin the whole UI:
+   1. To change the brand color, edit the values in "1. BRAND PALETTE".
+   2. To re-map a role (e.g. make all cards white), edit "2. SEMANTIC TOKENS".
+   Components must reference the semantic tokens (or the palette) below —
+   never hardcode a hex/rgba value in a *.module.css file.
+
+   The "LEGACY ALIASES" block keeps the original variable names working, so
+   older components don't break. Prefer the semantic tokens for new code.
+   ========================================================================== */
+
 :root {
-  --black: #000;
-  --gray: #595d62;
-  --white: #fff;
-  --light-brown: #9b6c43;
-  --light-beige: #faf3e0;
-  --light-gray: #d9d9d9;
-  --darck-brown: #3d2218;
-  --background: #fbfcf8;
-  --brown: #6d554b;
-  --light-gray-2: #d3d3d3;
-  --light-gray-3: #c5c5c5;
-  --gray-3: #9f9f9f;
-  --social-media-background: rgba(255, 255, 255, 0);
-  --gray-2: #575757;
-  --black-2: #070707;
-  --beige: #e3caa5;
-  --beige-2: #edd9aa;
-  --white-55: rgba(255, 255, 255, 0.55);
-  --white-80: rgba(255, 255, 255, 0.8);
-  --black-60: rgba(0, 0, 0, 0.6);
-  --black-50: rgba(0, 0, 0, 0.5);
-  --white-55-: rgba(255, 255, 255, 0.55);
-  --white-80-: rgba(255, 255, 255, 0.8);
-  --darck-brown-65-: rgba(61, 34, 24, 0.65);
-  --icon-gray: #3a3a3a;
-  --light-beige-2: #fffbe9;
-  --darck-gray: #323232;
-  --light-beige-3: #e1d7c6;
-  --red: #c80000;
+  /* ===========================================================================
+     1. BRAND PALETTE — raw colors. Change these to re-skin the app.
+     ========================================================================= */
+  --brand-primary: #9b6c43; /* main brand brown: CTAs, links, active state */
+  --brand-primary-hover: #6d554b; /* hover / pressed state of brand elements */
+  --brand-dark: #3d2218; /* darkest brand: header, footer, dark modals */
+  --brand-accent: #e3caa5; /* warm beige accent */
+
+  /* Cream / beige surfaces */
+  --cream: #faf3e0; /* cards, warm modals */
+  --cream-page: #fbfcf8; /* main content background */
+  --cream-2: #edd9aa;
+  --cream-3: #fffbe9;
+  --cream-4: #e1d7c6;
+
+  /* Neutral ink */
+  --white: #ffffff;
+  --black: #000000;
+  --ink-900: #1a1a1a; /* near-black headings / dark gradient */
+  --ink-800: #2a2a2a; /* dark gradient stop */
+
+  /* RGB triplets — drive the rgba() overlays & effects below */
+  --rgb-black: 0, 0, 0;
+  --rgb-white: 255, 255, 255;
+  --rgb-brand-dark: 61, 34, 24;
+  --rgb-brand-primary: 155, 108, 67;
+  --rgb-cream-page: 251, 252, 248;
+  --rgb-focus: 78, 70, 180;
+
+  /* ===========================================================================
+     2. SEMANTIC TOKENS — map roles to the palette. Reference these in components.
+     ========================================================================= */
+
+  /* --- Surfaces / backgrounds --- */
+  --surface-app: #f8f9fa; /* <body> background */
+  --surface-page: var(--cream-page); /* page containers */
+  --surface-card: var(--cream); /* recipe cards, warm modals */
+  --surface-modal: var(--white); /* plain white modals */
+  --surface-inverse: var(--brand-dark); /* header, footer, dark panels */
+  --surface-muted: #f5f5f5; /* subtle button background */
+  --surface-muted-hover: #e8e8e8;
+  --surface-hover: #f9f9f9; /* light hover background */
+
+  /* --- Text --- */
+  --text-primary: var(--black); /* default body & headings */
+  --text-secondary: #595d62; /* helper / hint text */
+  --text-muted: #666666; /* subtitles, meta values */
+  --text-dark: #333333; /* secondary buttons, close icons */
+  --text-faint: #999999; /* list markers, faint accents */
+  --text-heading-alt: var(--ink-900); /* home page heading */
+  --text-body-alt: #444444; /* home page paragraph */
+  --text-on-brand: var(--white); /* text/icons on brand-primary bg */
+  --text-on-inverse: var(--white); /* text/icons on inverse surfaces */
+  --text-link-inverse-hover: #d9d9d9; /* link hover on dark chrome */
+
+  /* --- Borders / dividers --- */
+  --border-default: #d9d9d9;
+  --border-input: #c5c5c5;
+  --border-strong: #111111;
+  --border-subtle: #dee2e6;
+  --divider-inverse: var(--white); /* dividers/outlines on dark chrome */
+
+  /* --- Feedback / accents --- */
+  --danger: #c80000;
+  --danger-text: var(--white);
+  --accent-blue: #0d6efd; /* pagination active */
+  --accent-blue-bg: #e9ecef; /* pagination hover */
+
+  /* --- Overlays, scrims & effects --- */
+  --overlay: rgba(var(--rgb-black), 0.6); /* modal backdrops */
+  --overlay-soft: rgba(var(--rgb-black), 0.5);
+  --scrim-inverse: rgba(var(--rgb-brand-dark), 0.65); /* brand-dark backdrop */
+  --scrim-page: rgba(var(--rgb-cream-page), 0.75); /* loader overlay on forms */
+  --hero-scrim-from: rgba(var(--rgb-black), 0.9);
+  --hero-scrim-to: rgba(var(--rgb-black), 0.3);
+  --white-overlay-10: rgba(var(--rgb-white), 0.1); /* subtle hover on dark */
+  --white-overlay-40: rgba(var(--rgb-white), 0.4); /* spinner track on brand */
+
+  --modal-shadow: 0 10px 25px rgba(var(--rgb-black), 0.2);
+  --dropdown-shadow: 0 0 1px 0 rgba(var(--rgb-black), 0.4),
+    0 8px 24px -6px rgba(var(--rgb-black), 0.16);
+  --focus-ring: 0 0 0 6px rgba(var(--rgb-focus), 0.12), 0 0 0 2px var(--surface-modal);
+  --focus-ring-soft: 0 0 0 4px rgba(var(--rgb-focus), 0.2);
+  --focus-ring-input: 0 0 0 2px rgba(var(--rgb-brand-primary), 0.16);
+
+  /* --- Typography --- */
   --font-family: var(--font-montserrat), sans-serif;
   --second-family: var(--font-dm-sans), sans-serif;
-  --box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px var(--white);
+
+  /* ===========================================================================
+     3. LEGACY ALIASES — original names, kept so existing components keep working.
+        Prefer the semantic tokens above for new code.
+     ========================================================================= */
+  --light-brown: var(--brand-primary);
+  --brown: var(--brand-primary-hover);
+  --darck-brown: var(--brand-dark);
+  --light-beige: var(--surface-card);
+  --light-beige-2: var(--cream-3);
+  --light-beige-3: var(--cream-4);
+  --background: var(--surface-page);
+  --beige: var(--brand-accent);
+  --beige-2: var(--cream-2);
+
+  --gray: var(--text-secondary); /* #595d62 */
+  --gray-2: #575757;
+  --gray-3: #9f9f9f;
+  --light-gray: var(--border-default); /* #d9d9d9 */
+  --light-gray-2: #d3d3d3;
+  --light-gray-3: var(--border-input); /* #c5c5c5 */
+  --icon-gray: #3a3a3a;
+  --darck-gray: #323232;
+  --black-2: #070707;
+
+  --red: var(--danger);
+
+  --social-media-background: rgba(var(--rgb-white), 0);
+  --white-55: rgba(var(--rgb-white), 0.55);
+  --white-80: rgba(var(--rgb-white), 0.8);
+  --white-55-: rgba(var(--rgb-white), 0.55);
+  --white-80-: rgba(var(--rgb-white), 0.8);
+  --black-60: var(--overlay); /* rgba(0,0,0,0.6) */
+  --black-50: var(--overlay-soft); /* rgba(0,0,0,0.5) */
+  --darck-brown-65-: var(--scrim-inverse); /* rgba(61,34,24,0.65) */
+
+  --box-shadow: var(--focus-ring);
 }
 
 body {
@@ -38,5 +144,5 @@ body {
   flex-direction: column;
   min-height: 100vh;
   margin: 0;
-  background-color: #f8f9fa;
+  background-color: var(--surface-app);
 }

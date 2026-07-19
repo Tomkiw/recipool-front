@@ -11,12 +11,13 @@ export async function GET(request: NextRequest) {
 
     const keyword = searchParams.get('keyword') || undefined;
     const page = Number(searchParams.get('page')) || 1;
+    const perPage = Number(searchParams.get('perPage')) || 12;
     const category = searchParams.get('category') || undefined;
     const ingredient = searchParams.get('ingredient') || undefined;
 
     const params = {
       page,
-      perPage: 12,
+      perPage,
       keyword,
       category,
       ingredient,

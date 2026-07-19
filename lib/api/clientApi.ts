@@ -129,11 +129,6 @@ export interface RemoveFavoriteResponse {
   };
 }
 
-export const getFavoriteRecipes = async (): Promise<Recipe[]> => {
-  const res = await nextServer.get<FetchRecipesResponse>('/recipes/favorites');
-  return res.data.recipes;
-};
-
 export async function addToFavorites(
   recipeId: string
 ): Promise<AddFavoriteResponse> {

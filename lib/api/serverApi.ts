@@ -5,6 +5,7 @@ import { api } from '@/app/api/api';
 import { Recipe } from '@/types/recipe';
 import { isAxiosError } from 'axios';
 import { parse } from 'cookie';
+import { normalizeFavoritesResponse } from './normalizeFavorites';
 
 const applySetCookieToStore = (
   cookieStore: Awaited<ReturnType<typeof cookies>>,
@@ -89,7 +90,7 @@ export const getServerMe = async (): Promise<User> => {
 
 interface FetchServerParams {
   page: number;
-  perPage: number;
+  perPage?: number;
   search?: string;
   category?: string;
   ingredient?: string;
@@ -195,9 +196,7 @@ export async function fetchFavoriteRecipesServer(
         Cookie: cookieStore.toString(),
       },
     });
-    // The favorites endpoint counts with "totalFavorites" instead of "totalRecipes".
-    const { totalFavorites, ...rest } = res.data;
-    return { ...rest, totalRecipes: totalFavorites ?? 0 };
+    return normalizeFavoritesResponse(res.data);
   } catch (error) {
     console.error('Server fetch favorite recipes error:', error);
     return {
