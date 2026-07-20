@@ -1,6 +1,7 @@
 import Link from "next/link";
 import css from "./Header.module.css";
 import HeaderNav from "./HeaderNav";
+import Logo from "@/components/Logo/Logo";
 
 const Header = () => {
   return (
@@ -8,13 +9,11 @@ const Header = () => {
       <div className={css.inner}>
         <Link
           href="/"
-          aria-label="Tasteorama — home"
+          aria-label="Recipool — home"
           className={css.logoLink}
           prefetch={false}
         >
-          <svg className={css.logo} aria-hidden="true">
-            <use href="/icons/icons.svg#icon-logo" />
-          </svg>
+          <Logo className={css.logo} />
         </Link>
         <HeaderNav />
       </div>

@@ -23,14 +23,14 @@
     font-size: 40px;
     font-weight: 600;
     margin: 0 auto;
-    color: black;
+    color: var(--text-primary);
 }
 
 .imageWrapper {
     position: relative;
     width: 100%;
     height: 276px;
-    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+    background: linear-gradient(135deg, var(--ink-800) 0%, var(--ink-900) 100%);
     border-radius: 8px;
     overflow: hidden;
 }
@@ -53,7 +53,7 @@
 }
 
 .infoBox {
-    background: #faf3e0;
+    background: var(--surface-card);
     border-radius: 16px;
     padding: 16px;
     display: flex;
@@ -64,7 +64,7 @@
 .infoBoxTitle {
     font-size: 24px;
     font-weight: 600;
-    color: black;
+    color: var(--text-primary);
     margin: 0;
 }
 
@@ -78,14 +78,14 @@
 
 .infoLabel {
     font-weight: 600;
-    color: black;
+    color: var(--text-primary);
     white-space: nowrap;
 }
 
 .infoValue {
     font-weight: 400;
     line-height: 1.55;
-    color: #666;
+    color: var(--text-muted);
     text-align: right;
 }
 
@@ -104,7 +104,7 @@
 .sectionTitle {
     font-size: 32px;
     font-weight: 600;
-    color: black;
+    color: var(--text-primary);
     margin: 0;
 }
 
@@ -112,7 +112,7 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 1.55;
-    color: black;
+    color: var(--text-primary);
     margin: 0;
 }
 
@@ -128,7 +128,7 @@
 .ingredientItem {
     font-size: 16px;
     line-height: 1.55;
-    color: black;
+    color: var(--text-primary);
     padding-left: 20px;
     position: relative;
 }
@@ -137,13 +137,13 @@
     content: '•';
     position: absolute;
     left: 0;
-    color: #999;
+    color: var(--text-faint);
 }
 
 .instructions {
     font-size: 16px;
     line-height: 1.55;
-    color: black;
+    color: var(--text-primary);
     white-space: pre-wrap;
     word-wrap: break-word;
     margin-top: 24px;

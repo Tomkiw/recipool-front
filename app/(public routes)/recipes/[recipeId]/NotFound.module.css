@@ -32,7 +32,7 @@
     font-size: 48px;
     font-weight: 600;
     margin: 0;
-    color: #000;
+    color: var(--text-primary);
     line-height: 1.1;
     margin-bottom: 16px;
 }
@@ -40,7 +40,7 @@
 .message {
     font-size: 24px;
     font-weight: 400;
-    color: black;
+    color: var(--text-primary);
     margin-bottom: 32px;
 }
 
@@ -56,8 +56,8 @@
 .button {
     display: inline-flex;
     align-items: center;
-    background: #9b6c43;
-    color: #fff;
+    background: var(--brand-primary);
+    color: var(--text-on-brand);
     padding: 17px 58px;
     border-radius: 8px;
     font-size: 18px;
@@ -67,5 +67,5 @@
 }
 
 .button:hover {
-    background: #8a5d38;
+    background: var(--brand-primary-hover);
 }

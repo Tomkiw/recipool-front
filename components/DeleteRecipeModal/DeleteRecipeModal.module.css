@@ -1,7 +1,7 @@
 .overlay {
     position: fixed;
     inset: 0;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: var(--overlay);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -11,9 +11,9 @@
 .modal {
     font-family: var(--font-montserrat), sans-serif;
     position: relative;
-    background-color: #faf3e0;
+    background-color: var(--surface-card);
     text-align: center;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--modal-shadow);
     border-radius: 32px;
     padding: 56px 24px 32px;
     width: 362px;
@@ -33,7 +33,7 @@
     background: transparent;
     border: none;
     cursor: pointer;
-    color: #333;
+    color: var(--text-dark);
 }
 
 .title {
@@ -51,7 +51,7 @@
 
 .cancelButton {
     font-family: inherit;
-    border: 1px solid #111;
+    border: 1px solid var(--border-strong);
     border-radius: 8px;
     padding: 16px;
     width: 314px;
@@ -66,8 +66,8 @@
     border-radius: 8px;
     width: 314px;
     height: 54px;
-    color: #fff;
-    background-color: #c80000;
+    color: var(--danger-text);
+    background-color: var(--danger);
     border-color: transparent;
     display: block;
     padding: 16px;

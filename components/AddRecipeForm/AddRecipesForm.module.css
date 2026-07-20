@@ -23,7 +23,7 @@
   align-items: center;
   justify-content: center;
 
-  background: rgba(251, 252, 248, 0.75);
+  background: var(--scrim-page);
   backdrop-filter: blur(2px);
   border-radius: 16px;
 
@@ -152,8 +152,8 @@
 .select:focus {
   /* border-color: var(--darck-brown-65-); */
   /* box-shadow: var(--box-shadow); */
-  border: 1.50px solid #9b6c43;
-  box-shadow: 0 0 0 2px rgba(155, 108, 67, 0.16);
+  border: 1.50px solid var(--brand-primary);
+  box-shadow: var(--focus-ring-input);
 }
 
 .textarea {
@@ -166,7 +166,7 @@
 .select {
   cursor: pointer;
   padding-right: 44px;
-  background-image: url("data:image/svg+xml,%3Csvg width='16' height='10' viewBox='0 0 16 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L8 8.5L15 1.5' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='16' height='10' viewBox='0 0 16 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L8 8.5L15 1.5' stroke='%2316181d' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 16px center;
   background-size: 16px 10px;
@@ -195,7 +195,7 @@
   border: none;
   border-radius: 8px;
   background: var(--light-brown);
-  color: var(--white);
+  color: var(--text-on-brand);
   font-size: 17px;
   line-height: 1.2;
   font-weight: 600;

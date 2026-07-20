@@ -45,7 +45,7 @@ export default function LogoutModal({ isOpen, onClose, onConfirm }: LogoutModalP
         
         <button onClick={onClose} className={css.closeButton} aria-label="Close">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M0.250001 0.25L7 7M7 7L0.25 13.75M7 7L13.75 13.75M7 7L13.75 0.250001" stroke="black" strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round" />
+  <path d="M0.250001 0.25L7 7M7 7L0.25 13.75M7 7L13.75 13.75M7 7L13.75 0.250001" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round" />
 </svg>
         </button>
 

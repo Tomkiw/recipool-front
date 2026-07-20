@@ -120,12 +120,12 @@ function Filters() {
               >
                 <path
                   d="M19.125 12C19.125 15.935 15.935 19.125 12 19.125C8.06497 19.125 4.875 15.935 4.875 12C4.875 8.06497 8.06497 4.875 12 4.875C15.935 4.875 19.125 8.06497 19.125 12Z"
-                  stroke="black"
+                  stroke="currentColor"
                   strokeWidth="0.5"
                 />
                 <path
                   d="M14.7745 9.25965L12 12.0341M12 12.0341L9.22559 14.8086M12 12.0341L14.7745 14.8086M12 12.0341L9.22559 9.25964"
-                  stroke="black"
+                  stroke="currentColor"
                   strokeWidth="0.5"
                   strokeLinecap="round"
                 />

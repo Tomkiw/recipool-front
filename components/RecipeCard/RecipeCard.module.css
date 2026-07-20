@@ -1,7 +1,7 @@
 .card {
     width: 100%;
     border-radius: 16px;
-    background-color: #faf3e0;
+    background-color: var(--surface-card);
     padding: 8px;
     display: flex;
     flex-direction: column;
@@ -48,7 +48,7 @@
     justify-content: center;
     gap: 4px;
     padding: 5px 8px;
-    background: white;
+    background: var(--surface-modal);
     border-radius: 8px;
     font-size: 12px;
     font-weight: 600;
@@ -89,13 +89,13 @@
     font-weight: 600;
     flex: 1;
     height: 40px;
-    border: 1px solid black;
+    border: 1px solid var(--border-strong);
     border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    color: black;
+    color: var(--text-primary);
     transition:
         background-color 300ms,
         color 300ms,
@@ -106,7 +106,7 @@
 .favorite {
     width: 40px;
     height: 40px;
-    border: 1px solid black;
+    border: 1px solid var(--border-strong);
     background: transparent;
     border-radius: 8px;
     display: flex;
@@ -121,23 +121,21 @@
 
 .learnMore:hover,
 .favorite:hover {
-    background: #9b6c43;
-    color: white;
-    border-color: #9b6c43;
+    background: var(--brand-primary);
+    color: var(--text-on-brand);
+    border-color: var(--brand-primary);
 }
 
 .learnMore:active,
 .favorite:active {
-    background: #9b6c43;
-    color: white;
-    box-shadow:
-        0 0 0 6px #4e46b41f,
-        0 0 0 2px white;
+    background: var(--brand-primary);
+    color: var(--text-on-brand);
+    box-shadow: var(--focus-ring);
 }
 
 .favoriteActive {
-    background: #9b6c43;
-    color: white;
+    background: var(--brand-primary);
+    color: var(--text-on-brand);
     border: none;
 }
 
@@ -236,7 +234,7 @@
 .delete {
     width: 40px;
     height: 40px;
-    border: 1px solid black;
+    border: 1px solid var(--border-strong);
     background: transparent;
     border-radius: 8px;
     display: flex;
@@ -251,9 +249,9 @@
 }
 
 .delete:hover:not(:disabled) {
-    background: #c80000;
+    background: var(--danger);
     border-color: transparent;
-    color: #fff;
+    color: var(--danger-text);
 }
 
 .delete:disabled {

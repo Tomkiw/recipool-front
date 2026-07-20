@@ -5,7 +5,7 @@
     top: 0;
     z-index: 1000;
 
-    background-color: #3d2218;
+    background-color: var(--surface-inverse);
     width: 100%;
     z-index: 999;
     position: sticky;
@@ -35,7 +35,7 @@
 }
 
 .logoLink:focus-visible {
-    outline: 2px solid #ffffff;
+    outline: 2px solid var(--text-on-inverse);
     outline-offset: 4px;
 }
 
@@ -44,6 +44,8 @@
     height: 46px;
     width: auto;
     object-fit: contain;
+    fill: currentColor;
+    color: var(--text-on-inverse);
 }
 
 @media (min-width: 768px) {
@@ -56,12 +58,4 @@
     .inner {
         padding: 14px 108px;
     }
-}
-
-.logo {
-    width: 165px;
-    height: 46px;
-    fill: currentColor;
-    color: #ffffff;
-    display: block;
 }

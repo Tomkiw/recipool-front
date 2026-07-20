@@ -67,7 +67,6 @@ export async function PATCH(request: Request, { params }: Props) {
     const { id } = await params;
     const body = await request.json();
 
-    // TODO: the backend has no PATCH /api/recipes/:recipeId route yet, so this 404s.
     const res = await api.patch(`/api/recipes/${id}`, body, {
       headers: {
         Cookie: cookieStore.toString(),

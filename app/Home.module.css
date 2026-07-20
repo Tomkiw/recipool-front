@@ -12,14 +12,14 @@
 .title {
     font-size: 36px;
     font-weight: 700;
-    color: #1a1a1a;
+    color: var(--text-heading-alt);
     margin-bottom: 60px;
     text-align: center;
 }
 
 .description {
     font-size: 18px;
-    color: #444444;
+    color: var(--text-body-alt);
     line-height: 28px;
     margin-bottom: 16px;
 }

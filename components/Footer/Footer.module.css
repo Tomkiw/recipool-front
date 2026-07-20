@@ -1,7 +1,7 @@
 /* ===== Footer (mobile-first, 320+ → 393 → 768 → 1440) ===== */
 
 .footer {
-    background-color: #3d2218;
+    background-color: var(--surface-inverse);
     width: 100%;
     margin-top: auto;
 }
@@ -29,7 +29,7 @@
 }
 
 .logoLink:focus-visible {
-    outline: 2px solid #ffffff;
+    outline: 2px solid var(--text-on-inverse);
     outline-offset: 4px;
 }
 
@@ -38,11 +38,13 @@
     height: 46px;
     width: auto;
     object-fit: contain;
+    fill: currentColor;
+    color: var(--text-on-inverse);
 }
 
 .copyright {
     margin: 0;
-    color: #ffffff;
+    color: var(--text-on-inverse);
 
     font-weight: 400;
     font-size: 12px;
@@ -70,7 +72,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: #ffffff;
+    color: var(--text-on-inverse);
     font-weight: 600;
     font-size: 16px;
     line-height: 19.5px;
@@ -83,11 +85,11 @@
 }
 
 .link:hover {
-    color: #d9d9d9;
+    color: var(--text-link-inverse-hover);
 }
 
 .link:focus-visible {
-    outline: 1px solid #ffffff;
+    outline: 1px solid var(--text-on-inverse);
     outline-offset: 2px;
 }
 
@@ -130,7 +132,7 @@ button.link {
 .backdrop {
     position: fixed;
     inset: 0;
-    background-color: rgba(61, 34, 24, 0.65);
+    background-color: var(--scrim-inverse);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -141,12 +143,12 @@ button.link {
 
 .modal {
     position: relative;
-    background-color: #3d2218;
+    background-color: var(--surface-inverse);
     border-radius: 12px;
     padding: 40px 24px 32px;
     max-width: 360px;
     width: 100%;
-    color: #ffffff;
+    color: var(--text-on-inverse);
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -162,7 +164,7 @@ button.link {
     height: 32px;
     background: transparent;
     border: none;
-    color: #ffffff;
+    color: var(--text-on-inverse);
     font-size: 24px;
     line-height: 1;
     cursor: pointer;
@@ -175,7 +177,7 @@ button.link {
 }
 
 .modalClose:focus-visible {
-    outline: 1px solid #ffffff;
+    outline: 1px solid var(--text-on-inverse);
     outline-offset: 2px;
 }
 
@@ -184,7 +186,7 @@ button.link {
     font-weight: 600;
     font-size: 16px;
     line-height: 1.4;
-    color: #ffffff;
+    color: var(--text-on-inverse);
 }
 
 .modalActions {
@@ -202,9 +204,9 @@ button.link {
     width: 100%;
     padding: 12px 16px;
     border-radius: 8px;
-    border: 1px solid #ffffff;
+    border: 1px solid var(--text-on-inverse);
     background: transparent;
-    color: #ffffff;
+    color: var(--text-on-inverse);
     font-weight: 600;
     font-size: 16px;
     line-height: 19.5px;
@@ -214,22 +216,23 @@ button.link {
 }
 
 .modalAction:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--white-overlay-10);
 }
 
 .modalActionPrimary {
-    background-color: #9b6c43;
-    border-color: #9b6c43;
+    background-color: var(--brand-primary);
+    border-color: var(--brand-primary);
+    color: var(--text-on-brand);
 }
 
 .modalActionPrimary:hover {
-    background-color: #6d554b;
-    border-color: #6d554b;
+    background-color: var(--brand-primary-hover);
+    border-color: var(--brand-primary-hover);
 }
 
 .modalAction:focus-visible,
 .modalActionPrimary:focus-visible {
-    outline: 2px solid #ffffff;
+    outline: 2px solid var(--text-on-inverse);
     outline-offset: 2px;
 }
 
@@ -251,18 +254,10 @@ button.link {
     }
 }
 
-.logo {
-    width: 165px;
-    height: 46px;
-    fill: currentColor;
-    color: #ffffff;
-    display: block;
-}
-
 .modalCloseIcon {
     width: 18px;
     height: 18px;
     stroke: currentColor;
     fill: none;
-    color: #ffffff;
+    color: var(--text-on-inverse);
 }

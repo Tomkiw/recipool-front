@@ -1,13 +1,13 @@
 .userEmail {
-    color: white;
+    color: var(--text-on-inverse);
     margin-right: 0.5rem;
     font-size: 0.9rem;
 }
 
 .logoutButton {
     background: transparent;
-    border: 1px solid white;
-    color: white;
+    border: 1px solid var(--text-on-inverse);
+    color: var(--text-on-inverse);
     padding: 0.3rem 0.6rem;
     border-radius: 4px;
     cursor: pointer;
@@ -16,8 +16,8 @@
 }
 
 .logoutButton:hover {
-    background-color: white;
-    color: #333;
+    background-color: var(--text-on-inverse);
+    color: var(--text-dark);
 }
 
 .navigationItem {
@@ -27,10 +27,10 @@
 
 .navigationLink {
     text-decoration: none;
-    color: white;
+    color: var(--text-on-inverse);
     font-size: 1rem;
 }
 
 .navigationLink:hover {
-    color: #ddd;
+    color: var(--text-link-inverse-hover);
 }

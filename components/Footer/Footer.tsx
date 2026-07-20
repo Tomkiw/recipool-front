@@ -1,6 +1,7 @@
 import Link from "next/link";
 import css from "./Footer.module.css";
 import FooterAccountLink from "./FooterAccountLink";
+import Logo from "@/components/Logo/Logo";
 
 const Footer = () => {
   return (
@@ -8,17 +9,15 @@ const Footer = () => {
       <div className={css.inner}>
         <Link
           href="/"
-          aria-label="Tasteorama — home"
+          aria-label="Recipool — home"
           className={css.logoLink}
           prefetch={false}
         >
-          <svg className={css.logo} aria-hidden="true">
-            <use href="/icons/icons.svg#icon-logo" />
-          </svg>
+          <Logo className={css.logo} />
         </Link>
 
         <p className={css.copyright}>
-          © 2025 CookingCompanion. All rights reserved.
+          © 2025 Recipool. All rights reserved.
         </p>
 
         <nav aria-label="Footer navigation">

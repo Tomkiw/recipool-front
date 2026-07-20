@@ -95,13 +95,13 @@
     }
 
     &:focus {
-      box-shadow: 0 0 0 4px rgba(78, 70, 180, 0.2);
+      box-shadow: var(--focus-ring-soft);
       background: var(--white);
       border: 1.5px solid var(--light-brown);
     }
 
     &.inputError {
-      border: 1.5px sol id var(--red);
+      border: 1.5px solid var(--red);
       color: var(--red);
     }
   }
@@ -181,7 +181,7 @@
   font-family: var(--font-family);
   font-weight: 600;
   font-size: 16px;
-  color: var(--white);
+  color: var(--text-on-brand);
   cursor: pointer;
   border: none;
 
@@ -191,16 +191,12 @@
   }
 
   &:active {
-    box-shadow:
-      0 0 0 6px rgba(78, 70, 180, 0.12),
-      0 0 0 2px var(--white);
+    box-shadow: var(--focus-ring);
     background: var(--light-brown);
   }
 
   &:disabled {
-    box-shadow:
-      0 0 0 6px rgba(78, 70, 180, 0.12),
-      0 0 0 2px var(--white);
+    box-shadow: var(--focus-ring);
     background: var(--light-brown);
     opacity: 0.3;
   }

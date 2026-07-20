@@ -14,7 +14,7 @@ export const metadata: Metadata = {
       process.env.NEXT_PUBLIC_API_URL ||
       'http://localhost:3000'
   ),
-  title: 'Tasteorama',
+  title: 'Recipool',
   description: 'Discover, save, and share your favorite recipes.',
   icons: {
     icon: '/favicon.svg',
@@ -28,8 +28,12 @@ export default function RootLayout({
   modal?: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth">
-      <body className={`${montserrat.variable} ${dmSans.variable}`}>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${montserrat.variable} ${dmSans.variable}`}
+    >
+      <body>
         <TanStackProvider>
           <AuthProvider>
             <Header />

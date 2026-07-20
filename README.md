@@ -1,11 +1,11 @@
-# Tasteorama 🍳
+# Recipool 🍳
 
 A recipe-sharing web application where users can discover, search, filter, save,
 and publish their own recipes.
 
 ## About the project
 
-Tasteorama solves the everyday problem of finding and organizing cooking recipes.
+Recipool solves the everyday problem of finding and organizing cooking recipes.
 Visitors can browse and search a shared recipe collection, filter it by category
 and ingredient, and open any recipe for a detailed view. Registered users get a
 personal profile with their **own** and **favorite** recipes, and can publish new

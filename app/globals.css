@@ -1,11 +1,15 @@
 /* =============================================================================
-   DESIGN TOKENS
+   DESIGN TOKENS — "Graphite & Amber"
    =============================================================================
    How to re-skin the whole UI:
    1. To change the brand color, edit the values in "1. BRAND PALETTE".
    2. To re-map a role (e.g. make all cards white), edit "2. SEMANTIC TOKENS".
    Components must reference the semantic tokens (or the palette) below —
    never hardcode a hex/rgba value in a *.module.css file.
+
+   NOTE on contrast: --text-on-brand is intentionally dark ink, not white.
+   Amber #e09022 vs white is only 2.6:1 (unreadable); vs ink it is 6.9:1.
+   If you swap --brand-primary for a dark color, flip --text-on-brand to white.
 
    The "LEGACY ALIASES" block keeps the original variable names working, so
    older components don't break. Prefer the semantic tokens for new code.
@@ -15,87 +19,87 @@
   /* ===========================================================================
      1. BRAND PALETTE — raw colors. Change these to re-skin the app.
      ========================================================================= */
-  --brand-primary: #9b6c43; /* main brand brown: CTAs, links, active state */
-  --brand-primary-hover: #6d554b; /* hover / pressed state of brand elements */
-  --brand-dark: #3d2218; /* darkest brand: header, footer, dark modals */
-  --brand-accent: #e3caa5; /* warm beige accent */
+  --brand-primary: #e09022; /* amber: CTAs, links, active state */
+  --brand-primary-hover: #c47a15; /* hover / pressed state of brand elements */
+  --brand-dark: #16181d; /* graphite: header, footer, dark modals */
+  --brand-accent: #f5d9a8; /* soft amber accent */
 
-  /* Cream / beige surfaces */
-  --cream: #faf3e0; /* cards, warm modals */
-  --cream-page: #fbfcf8; /* main content background */
-  --cream-2: #edd9aa;
-  --cream-3: #fffbe9;
-  --cream-4: #e1d7c6;
+  /* Neutral surfaces */
+  --cream: #f6f5f3; /* cards, soft modals */
+  --cream-page: #fafafa; /* main content background */
+  --cream-2: #f0eeea;
+  --cream-3: #fbfaf8;
+  --cream-4: #e6e3de;
 
   /* Neutral ink */
   --white: #ffffff;
-  --black: #000000;
-  --ink-900: #1a1a1a; /* near-black headings / dark gradient */
-  --ink-800: #2a2a2a; /* dark gradient stop */
+  --ink: #16181d; /* graphite near-black — default text */
+  --ink-900: #1b1e24; /* dark gradient stop */
+  --ink-800: #2a2f37; /* dark gradient stop */
 
   /* RGB triplets — drive the rgba() overlays & effects below */
-  --rgb-black: 0, 0, 0;
   --rgb-white: 255, 255, 255;
-  --rgb-brand-dark: 61, 34, 24;
-  --rgb-brand-primary: 155, 108, 67;
-  --rgb-cream-page: 251, 252, 248;
-  --rgb-focus: 78, 70, 180;
+  --rgb-ink: 22, 24, 29;
+  --rgb-brand-dark: 22, 24, 29;
+  --rgb-brand-primary: 224, 144, 34;
+  --rgb-cream-page: 250, 250, 250;
 
   /* ===========================================================================
      2. SEMANTIC TOKENS — map roles to the palette. Reference these in components.
      ========================================================================= */
 
   /* --- Surfaces / backgrounds --- */
-  --surface-app: #f8f9fa; /* <body> background */
+  --surface-app: var(--cream-page); /* <body> background */
   --surface-page: var(--cream-page); /* page containers */
-  --surface-card: var(--cream); /* recipe cards, warm modals */
+  --surface-card: var(--cream); /* recipe cards, soft modals */
   --surface-modal: var(--white); /* plain white modals */
   --surface-inverse: var(--brand-dark); /* header, footer, dark panels */
-  --surface-muted: #f5f5f5; /* subtle button background */
-  --surface-muted-hover: #e8e8e8;
-  --surface-hover: #f9f9f9; /* light hover background */
+  --surface-muted: #f0efec; /* subtle button background */
+  --surface-muted-hover: #e5e3df;
+  --surface-hover: #f8f7f5; /* light hover background */
 
   /* --- Text --- */
-  --text-primary: var(--black); /* default body & headings */
-  --text-secondary: #595d62; /* helper / hint text */
-  --text-muted: #666666; /* subtitles, meta values */
-  --text-dark: #333333; /* secondary buttons, close icons */
-  --text-faint: #999999; /* list markers, faint accents */
-  --text-heading-alt: var(--ink-900); /* home page heading */
-  --text-body-alt: #444444; /* home page paragraph */
-  --text-on-brand: var(--white); /* text/icons on brand-primary bg */
-  --text-on-inverse: var(--white); /* text/icons on inverse surfaces */
-  --text-link-inverse-hover: #d9d9d9; /* link hover on dark chrome */
+  --text-primary: var(--ink); /* default body & headings */
+  --text-secondary: #5f636b; /* helper / hint text */
+  --text-muted: #6e737c; /* subtitles, meta values */
+  --text-dark: #2f333a; /* secondary buttons, close icons */
+  --text-faint: #9aa0a8; /* list markers, faint accents */
+  --text-heading-alt: var(--ink); /* home page heading */
+  --text-body-alt: #40454d; /* home page paragraph */
+  --text-on-brand: var(--ink); /* text/icons on amber bg — see NOTE above */
+  --text-on-inverse: var(--white); /* text/icons on graphite surfaces */
+  --text-link-inverse-hover: #c9ccd2; /* link hover on dark chrome */
 
   /* --- Borders / dividers --- */
-  --border-default: #d9d9d9;
-  --border-input: #c5c5c5;
-  --border-strong: #111111;
-  --border-subtle: #dee2e6;
-  --divider-inverse: var(--white); /* dividers/outlines on dark chrome */
+  --border-default: #e2e1de;
+  --border-input: #d3d2ce;
+  --border-strong: var(--ink);
+  --border-subtle: #ecebe8;
+  --divider-inverse: rgba(var(--rgb-white), 0.32); /* dividers on dark chrome */
 
   /* --- Feedback / accents --- */
-  --danger: #c80000;
+  --danger: #c43d31;
+  --danger-hover: #a83227;
   --danger-text: var(--white);
-  --accent-blue: #0d6efd; /* pagination active */
-  --accent-blue-bg: #e9ecef; /* pagination hover */
+  --pagination-active: var(--brand-primary);
+  --pagination-hover-bg: var(--surface-muted);
 
   /* --- Overlays, scrims & effects --- */
-  --overlay: rgba(var(--rgb-black), 0.6); /* modal backdrops */
-  --overlay-soft: rgba(var(--rgb-black), 0.5);
-  --scrim-inverse: rgba(var(--rgb-brand-dark), 0.65); /* brand-dark backdrop */
+  --overlay: rgba(var(--rgb-brand-dark), 0.6); /* modal backdrops */
+  --overlay-soft: rgba(var(--rgb-brand-dark), 0.5);
+  --scrim-inverse: rgba(var(--rgb-brand-dark), 0.72); /* graphite backdrop */
   --scrim-page: rgba(var(--rgb-cream-page), 0.75); /* loader overlay on forms */
-  --hero-scrim-from: rgba(var(--rgb-black), 0.9);
-  --hero-scrim-to: rgba(var(--rgb-black), 0.3);
+  --hero-scrim-from: rgba(var(--rgb-brand-dark), 0.88);
+  --hero-scrim-to: rgba(var(--rgb-brand-dark), 0.25);
   --white-overlay-10: rgba(var(--rgb-white), 0.1); /* subtle hover on dark */
   --white-overlay-40: rgba(var(--rgb-white), 0.4); /* spinner track on brand */
 
-  --modal-shadow: 0 10px 25px rgba(var(--rgb-black), 0.2);
-  --dropdown-shadow: 0 0 1px 0 rgba(var(--rgb-black), 0.4),
-    0 8px 24px -6px rgba(var(--rgb-black), 0.16);
-  --focus-ring: 0 0 0 6px rgba(var(--rgb-focus), 0.12), 0 0 0 2px var(--surface-modal);
-  --focus-ring-soft: 0 0 0 4px rgba(var(--rgb-focus), 0.2);
-  --focus-ring-input: 0 0 0 2px rgba(var(--rgb-brand-primary), 0.16);
+  --modal-shadow: 0 16px 40px rgba(var(--rgb-ink), 0.18);
+  --dropdown-shadow: 0 1px 2px rgba(var(--rgb-ink), 0.06),
+    0 8px 24px -6px rgba(var(--rgb-ink), 0.14);
+  --focus-ring: 0 0 0 4px rgba(var(--rgb-brand-primary), 0.32);
+  --focus-ring-soft: 0 0 0 4px rgba(var(--rgb-brand-primary), 0.26);
+  --focus-ring-input: 0 0 0 3px rgba(var(--rgb-brand-primary), 0.22);
 
   /* --- Typography --- */
   --font-family: var(--font-montserrat), sans-serif;
@@ -105,6 +109,7 @@
      3. LEGACY ALIASES — original names, kept so existing components keep working.
         Prefer the semantic tokens above for new code.
      ========================================================================= */
+  --black: var(--text-primary);
   --light-brown: var(--brand-primary);
   --brown: var(--brand-primary-hover);
   --darck-brown: var(--brand-dark);
@@ -115,15 +120,15 @@
   --beige: var(--brand-accent);
   --beige-2: var(--cream-2);
 
-  --gray: var(--text-secondary); /* #595d62 */
-  --gray-2: #575757;
-  --gray-3: #9f9f9f;
-  --light-gray: var(--border-default); /* #d9d9d9 */
-  --light-gray-2: #d3d3d3;
-  --light-gray-3: var(--border-input); /* #c5c5c5 */
-  --icon-gray: #3a3a3a;
-  --darck-gray: #323232;
-  --black-2: #070707;
+  --gray: var(--text-secondary);
+  --gray-2: var(--text-muted);
+  --gray-3: var(--text-faint);
+  --light-gray: var(--border-default);
+  --light-gray-2: var(--border-input);
+  --light-gray-3: var(--border-input);
+  --icon-gray: var(--text-dark);
+  --darck-gray: var(--text-dark);
+  --black-2: var(--ink);
 
   --red: var(--danger);
 
@@ -132,9 +137,9 @@
   --white-80: rgba(var(--rgb-white), 0.8);
   --white-55-: rgba(var(--rgb-white), 0.55);
   --white-80-: rgba(var(--rgb-white), 0.8);
-  --black-60: var(--overlay); /* rgba(0,0,0,0.6) */
-  --black-50: var(--overlay-soft); /* rgba(0,0,0,0.5) */
-  --darck-brown-65-: var(--scrim-inverse); /* rgba(61,34,24,0.65) */
+  --black-60: var(--overlay);
+  --black-50: var(--overlay-soft);
+  --darck-brown-65-: var(--scrim-inverse);
 
   --box-shadow: var(--focus-ring);
 }
@@ -145,4 +150,5 @@ body {
   min-height: 100vh;
   margin: 0;
   background-color: var(--surface-app);
+  color: var(--text-primary);
 }
