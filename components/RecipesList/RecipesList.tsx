@@ -37,7 +37,8 @@ export default function RecipeList({
     filters?.keyword || filters?.category || filters?.ingredient
   );
 
-  const [page, setPage] = useState(1);
+  const page = useFiltersStore((state) => state.page);
+  const setPage = useFiltersStore((state) => state.setPage);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   useEffect(() => {
@@ -57,7 +58,14 @@ export default function RecipeList({
     setIsLoadingMore(true);
     try {
       const nextPage = page + 1;
-      const data = await fetchRecipes(nextPage, searchQuery, currentCategory);
+      // Довантажуємо з урахуванням активних фільтрів зі стора
+      // (keyword/category/ingredient), а не порожніх пропсів сторінки.
+      const data = await fetchRecipes(
+        nextPage,
+        filters.keyword || searchQuery,
+        filters.category || currentCategory,
+        filters.ingredient
+      );
 
       setRecipesData({
         recipes: [...recipes, ...data.recipes],

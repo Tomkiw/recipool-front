@@ -25,7 +25,7 @@ const FooterAccountLink = () => {
 
   if (isAuthenticated) {
     return (
-      <Link href="/profile" className={css.link} prefetch={false}>
+      <Link href="/profile/own" className={css.link} prefetch={false}>
         Account
       </Link>
     );
