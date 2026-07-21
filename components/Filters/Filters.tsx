@@ -5,7 +5,7 @@ import { useState } from 'react';
 import SelectFilter from '../SelectFilter/SelectFilter';
 import { useCategories } from '@/hooks/useCategories';
 import { useIngredients } from '@/hooks/useIngredients';
-import { fetchRecipes } from '@/lib/api/recipesApi';
+import { fetchRecipes } from '@/lib/api/clientApi';
 import { useFiltersStore } from '@/lib/store/filtersStore';
 import { SearchFilters } from '@/types/filters';
 import css from './Filters.module.css';

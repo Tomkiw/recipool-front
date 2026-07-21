@@ -1,6 +1,6 @@
 import { SearchFilters } from '@/types/filters';
 import { useQuery } from '@tanstack/react-query';
-import { fetchRecipes } from '@/lib/api/recipesApi';
+import { fetchRecipes } from '@/lib/api/clientApi';
 
 export function useRecipes(filters: SearchFilters) {
   return useQuery({

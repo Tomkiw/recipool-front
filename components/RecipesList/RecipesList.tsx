@@ -60,12 +60,12 @@ export default function RecipeList({
       const nextPage = page + 1;
       // Довантажуємо з урахуванням активних фільтрів зі стора
       // (keyword/category/ingredient), а не порожніх пропсів сторінки.
-      const data = await fetchRecipes(
-        nextPage,
-        filters.keyword || searchQuery,
-        filters.category || currentCategory,
-        filters.ingredient
-      );
+      const data = await fetchRecipes({
+        page: nextPage,
+        keyword: filters.keyword || searchQuery,
+        category: filters.category || currentCategory,
+        ingredient: filters.ingredient,
+      });
 
       setRecipesData({
         recipes: [...recipes, ...data.recipes],

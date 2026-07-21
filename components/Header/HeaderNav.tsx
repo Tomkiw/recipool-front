@@ -31,17 +31,9 @@ const HeaderNav = () => {
       if (event.key === 'Escape') setIsOpen(false);
     };
     document.addEventListener('keydown', handleKey);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setIsOpen(false);
-    };
-    document.addEventListener('keydown', onKey);
     return () => {
       document.body.style.overflow = previousOverflow;
       document.removeEventListener('keydown', handleKey);
-      document.body.style.overflow = prev;
-      document.removeEventListener('keydown', onKey);
     };
   }, [isOpen]);
 

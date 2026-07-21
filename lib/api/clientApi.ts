@@ -87,18 +87,28 @@ export interface FetchRecipesResponse {
   recipes: Recipe[];
 }
 
-export async function fetchRecipes(
-  page: number = 1,
-  query: string = '',
-  category?: string,
-  ingredient?: string
-): Promise<FetchRecipesResponse> {
+export interface FetchRecipesParams {
+  page?: number;
+  keyword?: string;
+  category?: string;
+  ingredient?: string;
+}
+
+// Єдина точка запиту рецептів для клієнта: покриває і пошук/фільтри (перша
+// сторінка), і довантаження наступних сторінок. Порожні значення не шлемо —
+// роут перетворює відсутні параметри на undefined.
+export async function fetchRecipes({
+  page = 1,
+  keyword,
+  category,
+  ingredient,
+}: FetchRecipesParams = {}): Promise<FetchRecipesResponse> {
   const params = {
-    keyword: query,
     page,
     perPage: 12,
-    category,
-    ingredient,
+    keyword: keyword?.trim() || undefined,
+    category: category?.trim() || undefined,
+    ingredient: ingredient?.trim() || undefined,
   };
 
   const { data } = await nextServer.get<FetchRecipesResponse>('/recipes', {

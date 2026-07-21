@@ -1,6 +1,6 @@
 'use client';
 
-import { fetchRecipes } from '@/lib/api/recipesApi';
+import { fetchRecipes } from '@/lib/api/clientApi';
 import SearchBox from '@/components/SearchBox/SearchBox';
 import css from './Hero.module.css';
 import { useFiltersStore } from '@/lib/store/filtersStore';
