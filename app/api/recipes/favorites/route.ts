@@ -3,6 +3,7 @@ import { api } from '../../api';
 import { cookies } from 'next/headers';
 import { logErrorResponse } from '../../_utils/utils';
 import { isAxiosError } from 'axios';
+import { normalizeFavoritesResponse } from '@/lib/api/normalizeFavorites';
 
 export async function GET(request: NextRequest) {
   try {
@@ -17,12 +18,9 @@ export async function GET(request: NextRequest) {
       headers: { Cookie: cookieStore.toString() },
     });
 
-    // The favorites endpoint counts with "totalFavorites" instead of "totalRecipes".
-    const { totalFavorites, ...rest } = res.data;
-    return NextResponse.json(
-      { ...rest, totalRecipes: totalFavorites ?? 0 },
-      { status: res.status }
-    );
+    return NextResponse.json(normalizeFavoritesResponse(res.data), {
+      status: res.status,
+    });
   } catch (error) {
     if (isAxiosError(error)) {
       logErrorResponse(error.response?.data);

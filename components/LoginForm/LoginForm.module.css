@@ -110,13 +110,13 @@
             }
 
             &:focus {
-                box-shadow: 0 0 0 4px rgba(78, 70, 180, 0.2);
+                box-shadow: var(--focus-ring-soft);
                 background: var(--white);
                 border: 1.50px solid var(--light-brown);
             }
 
             &.inputError {
-                border: 1.50px sol id var(--red);
+                border: 1.50px solid var(--red);
                 color: var(--red);
             }
         }
@@ -154,7 +154,7 @@
 
     .eyeIcon {
         /* stroke: var(--light-gray) */
-        stroke: black;
+        stroke: var(--text-primary);
     }
 
     .eyeButton {
@@ -176,7 +176,7 @@
             opacity: 0.9;
 
             .eyeIcon {
-                stroke: black;
+                stroke: var(--text-primary);
             }
         }
 
@@ -204,7 +204,7 @@
         font-family: var(--font-family);
         font-weight: 600;
         font-size: 16px;
-        color: var(--white);
+        color: var(--text-on-brand);
         cursor: pointer;
         border: none;
 
@@ -214,12 +214,12 @@
         }
 
         &:active {
-            box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px var(--white);
+            box-shadow: var(--focus-ring);
             background: var(--light-brown);
         }
 
         &:disabled {
-            box-shadow: 0 0 0 6px rgba(78, 70, 180, 0.12), 0 0 0 2px var(--white);
+            box-shadow: var(--focus-ring);
             background: var(--light-brown);
             opacity: 0.3;
         }

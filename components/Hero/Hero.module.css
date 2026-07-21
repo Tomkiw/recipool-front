@@ -7,7 +7,7 @@
   min-height: 513px;
   padding-top: 35px;
   background:
-    linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3)),
+    linear-gradient(to right, var(--hero-scrim-from), var(--hero-scrim-to)),
     url('/images/banner-mob.jpg') no-repeat center center;
   background-size: cover;
 }
@@ -38,7 +38,7 @@
     min-height: 443px;
     align-items: flex-start;
     background-image:
-      linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3)),
+      linear-gradient(to right, var(--hero-scrim-from), var(--hero-scrim-to)),
       url('/images/banner-tab.jpg');
   }
 
@@ -54,7 +54,7 @@
 @media screen and (min-width: 1440px) {
   .hero {
     background-image:
-      linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3)),
+      linear-gradient(to right, var(--hero-scrim-from), var(--hero-scrim-to)),
       url('/images/banner.jpg');
   }
 
@@ -66,7 +66,7 @@
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolition: 192dpi) {
   .hero {
     background-image:
-      linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3)),
+      linear-gradient(to right, var(--hero-scrim-from), var(--hero-scrim-to)),
       url('/images/banner@2x.jpg');
   }
 }

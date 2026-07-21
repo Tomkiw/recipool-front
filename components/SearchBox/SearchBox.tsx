@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import css from './SearchBox.module.css';
 import Loader from '../Loader/Loader';
-import style from '@/app/Home.module.css';
 
 interface SearchBoxProps {
   onSearch: (value: string) => void;

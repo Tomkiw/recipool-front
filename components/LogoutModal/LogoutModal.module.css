@@ -3,7 +3,7 @@
     position: fixed;
     inset: 0;
     /* Це те саме, що top: 0; right: 0; bottom: 0; left: 0; */
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: var(--overlay);
     /* Напівпрозорий темний фон */
     display: flex;
     align-items: center;
@@ -18,12 +18,12 @@
 .modal {
     font-family: var(--font-montserrat), sans-serif;
     position: relative;
-    background-color: #faf3e0;
+    background-color: var(--surface-card);
     width: 100%;
     padding: 32px 24px;
     border-radius: 24px;
     text-align: center;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--modal-shadow);
     /* Тінь для глибини */
     border-radius: 32px;
     padding: 56px 24px 32px;
@@ -46,7 +46,7 @@
     background: transparent;
     border: none;
     cursor: pointer;
-    color: #333;
+    color: var(--text-dark);
 }
 
 .title {
@@ -63,7 +63,7 @@
 
 .cancelButton {
     font-family: inherit;
-    border: 1px solid #111;
+    border: 1px solid var(--border-strong);
     border-radius: 8px;
     padding: 16px;
     width: 314px;
@@ -77,8 +77,8 @@
     border-radius: 8px;
     width: 314px;
     height: 54px;
-    color: #fff;
-    background-color: #c80000;
+    color: var(--danger-text);
+    background-color: var(--danger);
     border-color: transparent;
     display: block;
     padding: 16px;

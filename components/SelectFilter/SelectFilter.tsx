@@ -3,7 +3,9 @@ import { ChangeEvent } from 'react';
 import css from './SelectFilter.module.css';
 
 interface SelectFiltersProps {
-  options: { _id: string; name: string }[];
+  // Рендериться лише name (value і label) — приймаємо будь-яку опцію з name,
+  // тож підходять і категорії { _id, name }, і інгредієнти { id, name }.
+  options: { name: string }[];
   placeholder: string;
   value: string;
   onChange: (value: string) => void;

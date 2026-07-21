@@ -1,13 +1,13 @@
 .button{
-    font-family: var(--font-montserrat), sans-serif;
+    font-family: var(--font-family);
     border-radius: 8px;
     padding: 16px;
     width: 372px;
     height: 54px;
-    color: #fff;
+    color: var(--text-on-brand);
     font-weight: 600;
     font-size: 18px;
-    background-color: #9b6c43;
+    background-color: var(--brand-primary);
     border-color: transparent;
     display: flex;
     align-items: center;
@@ -17,11 +17,11 @@
     transition: background-color 200ms ease;
 }
 .button:hover, .button:focus{
-    background-color: #6d554b;
+    background-color: var(--brand-primary-hover);
 }
 .button:active{
     border-radius: 8px;
-    border-color: #fff;
+    border-color: var(--text-on-brand);
 }
 @media (min-width: 768px) {
     .button{

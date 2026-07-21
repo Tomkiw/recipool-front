@@ -53,5 +53,6 @@
 .button:hover,
 .button:focus-visible {
   background-color: var(--light-brown);
+  color: var(--text-on-brand);
   transform: translateY(-2px);
 }

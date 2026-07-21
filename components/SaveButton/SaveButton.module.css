@@ -1,6 +1,6 @@
 .saveButton {
-  background: #9b6c43;
-  color: white;
+  background: var(--brand-primary);
+  color: var(--text-on-brand);
   border: none;
   border-radius: 6px;
   padding: 12px 24px;
@@ -17,7 +17,7 @@
 }
 
 .saveButton:hover:not(:disabled) {
-  background: #8a6d5b;
+  background: var(--brand-primary-hover);
 }
 
 .saveButton:active:not(:disabled) {
@@ -30,11 +30,11 @@
 }
 
 .saveButton.saved {
-  background: #9b6c43;
+  background: var(--brand-primary);
 }
 
 .saveButton.saved:hover:not(:disabled) {
-  background: #8a6d5b;
+  background: var(--brand-primary-hover);
 }
 
 .saveIcon {
@@ -48,8 +48,8 @@
 .saveIconFilled {
   width: 18px;
   height: 18px;
-  fill: white;
-  stroke: white;
+  fill: var(--text-on-brand);
+  stroke: var(--text-on-brand);
   stroke-width: 1.5;
 }
 
@@ -58,8 +58,8 @@
   display: inline-block;
   width: 18px;
   height: 18px;
-  border: 2px solid rgba(255, 255, 255, 0.4);
-  border-top-color: #fff;
+  border: 2px solid var(--white-overlay-40);
+  border-top-color: var(--text-on-brand);
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }

@@ -10,7 +10,7 @@ export async function POST(_req: Request, { params }: Props) {
   try {
     const cookieStore = await cookies();
     const { id } = await params;
-    const res = await api.post(`api/recipes/${id}/favorite`, null, {
+    const res = await api.post(`/api/recipes/${id}/favorite`, null, {
       headers: { Cookie: cookieStore.toString() },
     });
     return NextResponse.json(res.data, { status: res.status });
@@ -19,7 +19,7 @@ export async function POST(_req: Request, { params }: Props) {
       logErrorResponse(error.response?.data);
       return NextResponse.json(
         { error: error.message, response: error.response?.data },
-        { status: error.status }
+        { status: error.response?.status ?? 500 }
       );
     }
     return NextResponse.json(
@@ -34,7 +34,7 @@ export async function DELETE(_req: Request, { params }: Props) {
   try {
     const cookieStore = await cookies();
     const { id } = await params;
-    const res = await api.delete(`api/recipes/${id}/favorite`, {
+    const res = await api.delete(`/api/recipes/${id}/favorite`, {
       headers: { Cookie: cookieStore.toString() },
     });
     return NextResponse.json(res.data, { status: res.status });
@@ -43,7 +43,7 @@ export async function DELETE(_req: Request, { params }: Props) {
       logErrorResponse(error.response?.data);
       return NextResponse.json(
         { error: error.message, response: error.response?.data },
-        { status: error.status }
+        { status: error.response?.status ?? 500 }
       );
     }
     return NextResponse.json(

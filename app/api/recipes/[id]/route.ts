@@ -23,7 +23,7 @@ export async function GET(request: Request, { params }: Props) {
       logErrorResponse(error.response?.data);
       return NextResponse.json(
         { error: error.message, response: error.response?.data },
-        { status: error.status }
+        { status: error.response?.status ?? 500 }
       );
     }
     logErrorResponse({ message: (error as Error).message });
@@ -39,7 +39,6 @@ export async function DELETE(request: Request, { params }: Props) {
     const cookieStore = await cookies();
     const { id } = await params;
 
-    // NOTE: the backend does not implement recipe deletion yet, so this 404s.
     const res = await api.delete(`/api/recipes/${id}`, {
       headers: {
         Cookie: cookieStore.toString(),
@@ -51,7 +50,7 @@ export async function DELETE(request: Request, { params }: Props) {
       logErrorResponse(error.response?.data);
       return NextResponse.json(
         { error: error.message, response: error.response?.data },
-        { status: error.status }
+        { status: error.response?.status ?? 500 }
       );
     }
     logErrorResponse({ message: (error as Error).message });
@@ -68,7 +67,7 @@ export async function PATCH(request: Request, { params }: Props) {
     const { id } = await params;
     const body = await request.json();
 
-    const res = await api.patch(`/recipes/${id}`, body, {
+    const res = await api.patch(`/api/recipes/${id}`, body, {
       headers: {
         Cookie: cookieStore.toString(),
       },
@@ -79,7 +78,7 @@ export async function PATCH(request: Request, { params }: Props) {
       logErrorResponse(error.response?.data);
       return NextResponse.json(
         { error: error.message, response: error.response?.data },
-        { status: error.status }
+        { status: error.response?.status ?? 500 }
       );
     }
     logErrorResponse({ message: (error as Error).message });

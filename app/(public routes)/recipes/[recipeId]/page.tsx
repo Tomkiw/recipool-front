@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `Recipe: ${recipe.title}`,
       description,
       url: `/recipes/${recipeId}`,
-      siteName: 'Tasteorama',
+      siteName: 'Recipool',
       images: [
         {
           url: ogImage,

@@ -67,11 +67,11 @@ export default function RecipesList({
       const nextPage = page + 1;
       
       // Запит робимо вже з урахуванням активних фільтрів зі стору
-      const data = await fetchRecipes(
-        nextPage, 
-        filters.keyword || searchQuery, 
-        filters.category || currentCategory
-      );
+      const data = await fetchRecipes({
+        page: nextPage,
+        keyword: filters.keyword || searchQuery,
+        category: filters.category || currentCategory,
+      });
       
       // 3. ДОДАЄМО нові рецепти до ТИХ, ЩО ВЖЕ Є В СТОРІ
       setRecipesData({

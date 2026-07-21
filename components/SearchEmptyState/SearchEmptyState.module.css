@@ -45,7 +45,7 @@
 .badge__btn:hover {
     background-color: var(--light-brown);
     border: var(--light-brown);
-    color: var(--white);
+    color: var(--text-on-brand);
 }
 
 @media screen and (min-width: 320px) and (max-width: 393px) {

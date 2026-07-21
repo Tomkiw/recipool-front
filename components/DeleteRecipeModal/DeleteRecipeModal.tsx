@@ -65,7 +65,7 @@ export default function DeleteRecipeModal({
           >
             <path
               d="M0.250001 0.25L7 7M7 7L0.25 13.75M7 7L13.75 13.75M7 7L13.75 0.250001"
-              stroke="black"
+              stroke="currentColor"
               strokeWidth="0.5"
               strokeLinecap="round"
               strokeLinejoin="round"

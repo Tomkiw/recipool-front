@@ -1,32 +1,7 @@
 import { Recipe } from '@/types/recipe';
 import { nextServer } from './api';
-import { SearchFilters } from '@/types/filters';
 
-export interface FetchNotesResponse {
-  page: number;
-  perPage: number;
-  recipes: Recipe[];
-  totalPages: number;
-  totalRecipes: number;
-}
-
-export async function fetchRecipes({
-  keyword,
-  category,
-  ingredient,
-}: SearchFilters): Promise<FetchNotesResponse> {
-
-  const params = new URLSearchParams();
-
-  if (keyword && keyword.trim() !== '') params.set('keyword', keyword.trim());
-  if (category && category.trim() !== '') params.set('category', category.trim());
-  if (ingredient && ingredient.trim() !== '') params.set('ingredient', ingredient.trim());
-
-  const query = params.toString() ? `?${params.toString()}` : '';
-  const res = await fetch(`/api/recipes${query}`);
-  if (!res.ok) throw new Error('Failed to fetch recipes');
-  return res.json();
-}
+// Пошук/фільтри рецептів живуть у fetchRecipes у clientApi.ts (єдине джерело).
 
 // Це для форми add-recipes
 export interface AddRecipePayload {
