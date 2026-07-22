@@ -26,9 +26,9 @@ export const metadata: Metadata = {
     siteName: 'Recipool',
     images: [
       {
-        url: '/images/banner.jpg',
-        width: 1440,
-        height: 443,
+        url: '/images/og-image.jpg',
+        width: 1200,
+        height: 630,
         alt: 'Recipool',
       },
     ],
