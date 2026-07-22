@@ -1,15 +1,11 @@
 /* ===== Header (mobile-first, 320+ → 393 → 768 → 1440) ===== */
 
 .header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    position: relative;
+    z-index: 999;
 
     background-color: var(--surface-inverse);
     width: 100%;
-    z-index: 999;
-    position: sticky;
-    top: 0;
 }
 
 .inner {

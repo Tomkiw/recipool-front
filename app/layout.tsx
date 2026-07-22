@@ -6,6 +6,7 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { montserrat, dmSans } from '@/app/fonts';
 import AuthProvider from '@/components/AuthProvider/AuthProvider';
+import ScrollNav from '@/components/ScrollNav/ScrollNav';
 import 'modern-normalize';
 
 export const metadata: Metadata = {
@@ -54,6 +55,7 @@ export default function RootLayout({
             <Header />
             <main>{children}</main>
             <Footer />
+            <ScrollNav />
           </AuthProvider>
         </TanStackProvider>
       </body>

@@ -1,0 +1,64 @@
+.wrapper {
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 900;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background-color: var(--light-brown);
+    color: var(--text-on-brand);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: var(--modal-shadow);
+    transition: background-color 200ms ease;
+}
+
+.btn:hover {
+    background-color: var(--brown);
+}
+
+.btn:focus-visible {
+    outline: 2px solid var(--text-on-brand);
+    outline-offset: 2px;
+}
+
+.icon {
+    width: 20px;
+    height: 12px;
+    stroke: currentColor;
+    fill: none;
+}
+
+.iconUp {
+    transform: rotate(180deg);
+}
+
+@media (min-width: 768px) {
+    .wrapper {
+        right: 32px;
+        bottom: 32px;
+    }
+
+    .btn {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .wrapper {
+        right: 48px;
+        bottom: 48px;
+    }
+}

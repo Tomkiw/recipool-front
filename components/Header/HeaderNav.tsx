@@ -20,10 +20,6 @@ const HeaderNav = () => {
   const clearIsAuthenticated = useAuthStore((s) => s.clearIsAuthenticated);
 
   useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
     if (isOpen === false) return;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
@@ -166,7 +162,10 @@ const HeaderNav = () => {
         id={panelId}
         className={`${css.mobilePanel} ${isOpen ? css.mobilePanelOpen : ''}`}
       >
-        <ul className={css.mobileList}>{links}</ul>
+        {/* Any tap inside the panel — a link or the logout button — closes it. */}
+        <ul className={css.mobileList} onClick={() => setIsOpen(false)}>
+          {links}
+        </ul>
       </div>
 
       <LogoutModal
