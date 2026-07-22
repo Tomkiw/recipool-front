@@ -19,6 +19,21 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.svg',
   },
+  openGraph: {
+    title: 'Recipool',
+    description: 'Discover, save, and share your favorite recipes.',
+    url: '/',
+    siteName: 'Recipool',
+    images: [
+      {
+        url: '/images/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Recipool',
+      },
+    ],
+    type: 'website',
+  },
 };
 
 export default function RootLayout({
