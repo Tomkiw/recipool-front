@@ -4,6 +4,7 @@ import './reset.css';
 import { Metadata } from 'next';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
+import ScrollToTopButton from '@/components/ScrollToTopButton/ScrollToTopButton';
 import { montserrat, dmSans } from '@/app/fonts';
 import AuthProvider from '@/components/AuthProvider/AuthProvider';
 import 'modern-normalize';
@@ -54,6 +55,7 @@ export default function RootLayout({
             <Header />
             <main>{children}</main>
             <Footer />
+            <ScrollToTopButton />
           </AuthProvider>
         </TanStackProvider>
       </body>

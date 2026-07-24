@@ -11,7 +11,6 @@ import css from './LoginForm.module.css';
 import { isAxiosError } from 'axios';
 import { showSuccessToast, showErrorToast } from '@/lib/utils/toast';
 import Link from 'next/link';
-import Image from 'next/image';
 
 type LoginFormValues = LoginRequest;
 
