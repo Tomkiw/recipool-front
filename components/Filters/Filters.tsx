@@ -45,7 +45,7 @@ function Filters() {
         totalRecipes: data.totalRecipes,
         totalPages: data.totalPages,
       });
-    } catch (error) {
+    } catch {
       await showErrorToast('Failed to fetch filtered recipes.');
     } finally {
       setIsLoading(false);
