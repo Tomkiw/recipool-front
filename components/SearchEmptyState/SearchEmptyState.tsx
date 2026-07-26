@@ -17,7 +17,7 @@ function SearchEmptyState({ onReset }: SearchEmptyStateProps) {
   return (
     <div className={css.badge}>
       <p className={css.badge__text}>
-        We're sorry! We were not able to find a match.
+        We&apos;re sorry! We were not able to find a match.
       </p>
       <button className={css.badge__btn} onClick={handleReset}>
         Reset search and filters

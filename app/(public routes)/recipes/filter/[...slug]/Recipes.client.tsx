@@ -1,11 +1,13 @@
 'use client'
 import css from '@/components/RecipesList/RecipesList.module.css'
-import { useState, useEffect } from "react";
-import RecipeCard from "@/components/RecipeCard/RecipeCard"; 
-import LoadMoreBtn from '@/components/LoadMoreBtn/LoadMoreBtn';
+import { useEffect } from "react";
+import RecipeCard from "@/components/RecipeCard/RecipeCard";
+import Pagination from '@/components/Pagination/Pagination';
 import { fetchRecipes } from '@/lib/api/clientApi';
 import { Recipe } from '@/types/recipe';
-import iziToast from 'izitoast';
+// Стилі безпечні для сервера, а сам iziToast імпортуємо динамічно нижче -
+// статичний import 'izitoast' звертається до document при завантаженні
+// модуля і валить SSR (document is not defined).
 import 'izitoast/dist/css/iziToast.min.css';
 
 // ДОДАЙ ІМПОРТ СВОГО СТОРУ (шлях може відрізнятися, перевір його)
@@ -47,44 +49,46 @@ export default function RecipesList({
       totalRecipes: initialTotalRecipes,
       totalPages: initialTotalPages,
     });
+    // Скидаємо сторінку, бо стор глобальний і міг зберегти значення
+    // з попереднього маршруту (наприклад, якщо там гортали пагінацію).
+    setPage(1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialRecipes, initialTotalRecipes, initialTotalPages]);
 
- 
+
   // Щоб уникнути блимання порожнього екрану до спрацьовування useEffect,
   // використовуємо initialRecipes, якщо в сторі ще нічого немає.
   const displayRecipes = recipes.length > 0 ? recipes : initialRecipes;
   const displayTotal = totalRecipes > 0 || recipes.length > 0 ? totalRecipes : initialTotalRecipes;
   const displayTotalPages = totalPages > 0 || recipes.length > 0 ? totalPages : initialTotalPages;
 
-  const hasMore = page < displayTotalPages;
+  const showPagination = displayTotalPages > 1;
 
-  const handleLoadMore = async () => {
-    if (isLoading || !hasMore) return; 
+  const handlePageChange = async (nextPage: number) => {
+    if (isLoading || nextPage === page) return;
 
     setIsLoading(true);
     try {
-      const nextPage = page + 1;
-      
       // Запит робимо вже з урахуванням активних фільтрів зі стору
       const data = await fetchRecipes({
         page: nextPage,
         keyword: filters.keyword || searchQuery,
         category: filters.category || currentCategory,
       });
-      
-      // 3. ДОДАЄМО нові рецепти до ТИХ, ЩО ВЖЕ Є В СТОРІ
+
+      // 3. ЗАМІНЮЄМО рецепти в сторі на дані обраної сторінки
       setRecipesData({
-        recipes: [...displayRecipes, ...data.recipes],
+        recipes: data.recipes,
         totalRecipes: data.totalRecipes,
         totalPages: data.totalPages,
       });
-      
+
       setPage(nextPage);
-    } catch (error) {
+    } catch {
+      const iziToast = (await import('izitoast')).default;
       iziToast.error({
         title: "Error",
-        message: "Failed to load more recipes. Please try again later.",
+        message: "Failed to load recipes. Please try again later.",
         position: "topRight",
       });
     } finally {
@@ -114,8 +118,18 @@ export default function RecipesList({
         ))}
       </ul>
 
-      {hasMore && (
-          <LoadMoreBtn onClick={handleLoadMore} disabled={isLoading} />
+      {showPagination && (
+        <div
+          className={`${css.paginationWrapper} ${
+            isLoading ? css.paginationLoading : ''
+          }`}
+        >
+          <Pagination
+            totalPages={displayTotalPages}
+            currentPage={page}
+            onPageChange={handlePageChange}
+          />
+        </div>
       )}
     </>
   );

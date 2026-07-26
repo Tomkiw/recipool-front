@@ -1,0 +1,63 @@
+.button {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--white);
+  border-radius: 50%;
+  background-color: var(--brand-dark);
+  color: var(--text-on-inverse);
+  box-shadow: var(--modal-shadow);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition:
+    opacity 200ms ease,
+    transform 200ms ease,
+    background-color 200ms ease;
+}
+
+.button.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.button:hover {
+  background-color: var(--brand-primary-hover);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  transform: rotate(180deg);
+}
+
+@media (min-width: 768px) {
+  .button {
+    right: 32px;
+    bottom: 32px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .button {
+    right: 48px;
+    bottom: 48px;
+  }
+}

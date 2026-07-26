@@ -1,9 +1,9 @@
 'use client';
 
 import css from './RecipesList.module.css';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import RecipeCard from '../RecipeCard/RecipeCard';
-import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
+import Pagination from '../Pagination/Pagination';
 import { fetchRecipes } from '@/lib/api/clientApi';
 import { Recipe } from '@/types/recipe';
 import Filters from '../Filters/Filters';
@@ -30,6 +30,7 @@ export default function RecipeList({
   const totalPages = useFiltersStore((state) => state.totalPages);
   const isLoading = useFiltersStore((state) => state.isLoading);
   const setRecipesData = useFiltersStore((state) => state.setRecipesData);
+  const setIsLoading = useFiltersStore((state) => state.setIsLoading);
 
   const keyword = useFiltersStore((state) => state.filters.keyword) ?? '';
   const filters = useFiltersStore((state) => state.filters);
@@ -39,7 +40,6 @@ export default function RecipeList({
 
   const page = useFiltersStore((state) => state.page);
   const setPage = useFiltersStore((state) => state.setPage);
-  const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   useEffect(() => {
     setRecipesData({
@@ -47,19 +47,21 @@ export default function RecipeList({
       totalRecipes,
       totalPages: initialTotalPages,
     });
+    // Скидаємо сторінку, бо стор глобальний і міг зберегти значення
+    // з попереднього маршруту (наприклад, якщо там гортали пагінацію).
+    setPage(1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const hasMore = page < totalPages;
+  const showPagination = totalPages > 1;
 
-  const handleLoadMore = async () => {
-    if (isLoadingMore || !hasMore) return;
+  const handlePageChange = async (nextPage: number) => {
+    if (isLoading || nextPage === page) return;
 
-    setIsLoadingMore(true);
+    setIsLoading(true);
     try {
-      const nextPage = page + 1;
-      // Довантажуємо з урахуванням активних фільтрів зі стора
-      // (keyword/category/ingredient), а не порожніх пропсів сторінки.
+      // Переходимо на обрану сторінку з урахуванням активних фільтрів зі
+      // стора (keyword/category/ingredient), а не порожніх пропсів сторінки.
       const data = await fetchRecipes({
         page: nextPage,
         keyword: filters.keyword || searchQuery,
@@ -68,22 +70,22 @@ export default function RecipeList({
       });
 
       setRecipesData({
-        recipes: [...recipes, ...data.recipes],
+        recipes: data.recipes,
         totalRecipes: data.totalRecipes,
         totalPages: data.totalPages,
       });
 
       setPage(nextPage);
-    } catch (error) {
+    } catch {
       const iziToast = (await import('izitoast')).default;
       iziToast.error({
         title: 'Error',
-        message: 'Failed to load more recipes. Please try again later.',
+        message: 'Failed to load recipes. Please try again later.',
         position: 'topRight',
         timeout: 2000,
       });
     } finally {
-      setIsLoadingMore(false);
+      setIsLoading(false);
     }
   };
 
@@ -112,9 +114,13 @@ export default function RecipeList({
         </ul>
       )}
 
-      {hasMore && !isLoading && (
-        <div className={css.loadMoreWrapper}>
-          <LoadMoreBtn onClick={handleLoadMore} disabled={isLoadingMore} />
+      {showPagination && !isLoading && (
+        <div className={css.paginationWrapper}>
+          <Pagination
+            totalPages={totalPages}
+            currentPage={page}
+            onPageChange={handlePageChange}
+          />
         </div>
       )}
     </div>

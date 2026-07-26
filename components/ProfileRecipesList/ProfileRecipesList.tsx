@@ -1,13 +1,12 @@
 'use client';
 
 import {
-    useEffect,
     useState
 }
 
 from 'react';
 import RecipeCard from '../RecipeCard/RecipeCard';
-import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
+import Pagination from '../Pagination/Pagination';
 
 import {
     Recipe
@@ -51,38 +50,41 @@ export default function ProfileRecipesList( {
     const [isLoading,
     setIsLoading]=useState(false);
 
-    useEffect(()=> {
-            setRecipes(initialRecipes);
-            setPage(1);
-            setTotalPages(initialTotalPages);
-            setTotalRecipes(initialTotalRecipes);
-        }
+    // Скидаємо локальний стан прямо під час рендеру, коли сервер віддав
+    // нову партію initialRecipes (зміна recipeType або router.refresh()),
+    // замість useEffect - так уникаємо зайвого циклу рендеру після коміту.
+    const [prevInitialRecipes,
+    setPrevInitialRecipes]=useState(initialRecipes);
+    if (initialRecipes !== prevInitialRecipes) {
+        setPrevInitialRecipes(initialRecipes);
+        setRecipes(initialRecipes);
+        setPage(1);
+        setTotalPages(initialTotalPages);
+        setTotalRecipes(initialTotalRecipes);
+    }
 
-        , [initialRecipes, initialTotalPages, initialTotalRecipes, recipeType]);
+    const showPagination=totalPages > 1;
 
-    const hasMore=page < totalPages;
-
-    const handleLoadMore=async ()=> {
-        if (isLoading || !hasMore) return;
+    const handlePageChange=async (nextPage: number)=> {
+        if (isLoading || nextPage===page) return;
 
         setIsLoading(true);
 
         try {
-            const nextPage=page+1;
             const data=await fetchMoreFn(nextPage);
 
-            setRecipes((prev)=> [...prev, ...data.recipes]);
+            setRecipes(data.recipes);
             setTotalPages(data.totalPages);
             setTotalRecipes(data.totalRecipes);
             setPage(nextPage);
         }
 
-        catch (error) {
+        catch {
             const iziToast=(await import('izitoast')).default;
 
             iziToast.error( {
                     title: 'Error',
-                    message: 'Failed to load more recipes. Please try again later.',
+                    message: 'Failed to load recipes. Please try again later.',
                     position: 'topRight',
                 }
 
@@ -154,16 +156,20 @@ export default function ProfileRecipesList( {
         }
 
             {
-            hasMore && (<div className= {
-                    css.loadMoreWrapper
+            showPagination && (<div className= {
+                    `${css.paginationWrapper} ${isLoading ? css.paginationLoading : ''}`
                 }
 
-                > <LoadMoreBtn onClick= {
-                    handleLoadMore
+                > <Pagination totalPages= {
+                    totalPages
                 }
 
-                disabled= {
-                    isLoading
+                currentPage= {
+                    page
+                }
+
+                onPageChange= {
+                    handlePageChange
                 }
 
                 /> </div>)

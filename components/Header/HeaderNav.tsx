@@ -19,9 +19,13 @@ const HeaderNav = () => {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
   const clearIsAuthenticated = useAuthStore((s) => s.clearIsAuthenticated);
 
-  useEffect(() => {
+  // Закриваємо меню прямо під час рендеру при зміні маршруту, а не в
+  // ефекті — так уникаємо зайвого циклу рендеру після коміту.
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
     setIsOpen(false);
-  }, [pathname]);
+  }
 
   useEffect(() => {
     if (isOpen === false) return;

@@ -40,7 +40,7 @@ function Hero() {
           position: 'topRight',
         });
       }
-    } catch (error) {
+    } catch {
       iziToast.error({
         title: 'Error',
         message: 'Something went wrong during search.',
