@@ -1,0 +1,77 @@
+/* ===== ActiveFilters: пілюлі активних фільтрів + скидання ===== */
+
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 36px;
+  padding: 0 var(--space-1) 0 var(--space-3);
+  border-radius: var(--radius-pill);
+  background-color: var(--brand-accent);
+  color: var(--text-primary);
+  font-size: var(--fs-small);
+  font-weight: 600;
+}
+
+.remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background-color var(--duration-fast) ease;
+}
+
+.remove:hover {
+  background-color: var(--white-overlay-40);
+}
+
+.remove:focus-visible {
+  outline: 2px solid var(--brand-dark);
+  outline-offset: 1px;
+}
+
+.removeIcon {
+  width: 16px;
+}
+
+.reset {
+  min-height: 36px;
+  padding: 0 var(--space-1);
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+.reset:hover {
+  color: var(--text-link);
+}
+
+.reset:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+}

@@ -1,4 +1,4 @@
-/* ===== SearchEmptyState ===== */
+/* ===== ErrorState ===== */
 
 .root {
   display: flex;
@@ -6,7 +6,7 @@
   align-items: center;
   gap: var(--space-4);
   max-width: 560px;
-  margin: var(--space-2) auto 0;
+  margin: var(--space-7) auto;
   padding: var(--space-7) var(--space-5);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-xl);
@@ -21,8 +21,8 @@
   width: 88px;
   height: 88px;
   border-radius: var(--radius-pill);
-  background-color: var(--brand-soft);
-  color: var(--text-link);
+  background-color: var(--danger-soft);
+  color: var(--danger);
 }
 
 .icon {
@@ -34,7 +34,6 @@
   font-size: var(--fs-h3);
   line-height: 1.3;
   font-weight: 700;
-  overflow-wrap: anywhere;
 }
 
 .text {
@@ -44,50 +43,57 @@
   color: var(--text-secondary);
 }
 
-.suggestions {
+.actions {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
-  gap: var(--space-2);
-}
-
-.chip {
-  min-height: 36px;
-  padding: 0 var(--space-3);
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius-pill);
-  background-color: var(--surface-card);
-  color: var(--text-primary);
-  font-size: var(--fs-small);
-  font-weight: 600;
-  cursor: pointer;
-  transition: border-color var(--duration-fast) ease;
-}
-
-.chip:hover {
-  border-color: var(--border-strong);
-}
-
-.reset {
+  gap: var(--space-4);
   margin-top: var(--space-2);
+}
+
+.retry {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
   height: 48px;
-  padding: 0 var(--space-5);
+  padding: 0 var(--space-5) 0 var(--space-4);
   border: none;
   border-radius: var(--radius-md);
-  background-color: var(--brand-dark);
-  color: var(--text-on-inverse);
+  background-color: var(--brand-primary);
+  color: var(--text-on-brand);
   font-size: var(--fs-body);
   font-weight: 700;
   cursor: pointer;
   transition: background-color var(--duration-fast) ease;
 }
 
-.reset:hover {
-  background-color: var(--ink-800);
+.retry:hover:not(:disabled) {
+  background-color: var(--brand-primary-hover);
 }
 
-.chip:focus-visible,
-.reset:focus-visible {
+.retry:disabled {
+  cursor: progress;
+}
+
+.retryIcon {
+  width: 18px;
+}
+
+.back {
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.back:hover {
+  color: var(--text-link);
+}
+
+.retry:focus-visible,
+.back:focus-visible {
   outline: 2px solid var(--brand-primary);
   outline-offset: 2px;
 }

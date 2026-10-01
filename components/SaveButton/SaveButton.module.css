@@ -2,18 +2,23 @@
   background: var(--brand-primary);
   color: var(--text-on-brand);
   border: none;
-  border-radius: 6px;
-  padding: 12px 24px;
-  font-size: 14px;
-  font-weight: 600;
+  border-radius: var(--radius-md);
+  padding: 0 var(--space-5);
+  font-size: var(--fs-body);
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background var(--duration-fast) ease;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  min-height: 46px;
+  gap: var(--space-2);
+  min-height: calc(var(--touch-target) + var(--space-2));
+}
+
+.saveButton:focus-visible {
+  outline: 2px solid var(--brand-dark);
+  outline-offset: 2px;
 }
 
 .saveButton:hover:not(:disabled) {
@@ -26,30 +31,36 @@
 
 .saveButton:disabled {
   opacity: 0.7;
-  cursor: not-allowed;
+  cursor: progress;
 }
 
+/* Збережений стан — графітовий, щоб відрізнявся від CTA «Save recipe». */
 .saveButton.saved {
-  background: var(--brand-primary);
+  background: var(--brand-dark);
+  color: var(--text-on-inverse);
 }
 
 .saveButton.saved:hover:not(:disabled) {
-  background: var(--brand-primary-hover);
+  background: var(--ink-800);
+}
+
+.saveButton.saved .spinner {
+  border-top-color: var(--text-on-inverse);
 }
 
 .saveIcon {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   fill: none;
   stroke: currentColor;
   stroke-width: 1.5;
 }
 
 .saveIconFilled {
-  width: 18px;
-  height: 18px;
-  fill: var(--text-on-brand);
-  stroke: var(--text-on-brand);
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  stroke: currentColor;
   stroke-width: 1.5;
 }
 

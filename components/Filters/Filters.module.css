@@ -1,126 +1,149 @@
-.filters__container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  position: relative;
-  box-sizing: border-box;
-  max-height: 33px;
+/* ===== Filters: липка панель під хедером (mobile-first) ===== */
+
+.bar {
+  position: sticky;
+  top: var(--header-height);
+  z-index: var(--z-sticky);
+  background-color: var(--surface-card);
+  border-bottom: 1px solid var(--border-default);
 }
 
-.filters__count {
-  font-family: var(--font-family);
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--black);
-}
-
-.filter__toggle__btn {
+.inner {
   display: flex;
   align-items: center;
-  gap: 4px;
-  background: none;
-  border: none;
-  font-family: var(--font-family);
-  font-weight: 600;
-  font-size: 12px;
-  color: var(--black);
-  cursor: pointer;
+  gap: var(--space-3);
+  max-width: calc(var(--container-max) + 2 * var(--page-gutter));
+  margin: 0 auto;
+  padding: var(--space-3) var(--page-gutter);
 }
 
-.filters__block {
+/* На мобільному інгредієнт живе в шторці. */
+.divider,
+.ingredient {
   display: none;
-  position: absolute;
-  top: 40px;
-  right: 0;
-  width: 100%;
-  background-color: var(--white);
-  box-shadow: var(--dropdown-shadow);
-  border: 1px solid var(--light-gray);
-  border-radius: 4px;
-  padding: 8px;
-  height: 222px;
 }
 
-.filters__block.isOpen {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.mobile__close {
-  display: flex;
-  justify-content: flex-end;
+.sheetToggle {
+  flex-shrink: 0;
+  display: inline-flex;
   align-items: center;
-  width: 100%;
-  margin-bottom: 5px;
-}
-
-.mobile__title {
-  font-family: var(--font-family);
+  gap: var(--space-2);
+  height: var(--touch-target);
+  padding: 0 var(--space-3);
+  border: 1px solid var(--border-input);
+  border-radius: var(--radius-md);
+  background-color: var(--surface-card);
+  color: var(--text-primary);
+  font-size: var(--fs-small);
   font-weight: 600;
-  font-size: 12px;
-  color: var(--black);
-}
-
-.mobile__close__btn {
-  background: none;
-  border: none;
   cursor: pointer;
 }
 
-.select__block {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  width: 100%;
+.sheetToggle:hover {
+  border-color: var(--border-strong);
 }
 
-.reset__btn {
-  background: none;
+.sheetToggle:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+}
+
+.toggleIcon {
+  width: 18px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 var(--space-1);
+  border-radius: var(--radius-pill);
+  background-color: var(--brand-dark);
+  color: var(--text-on-inverse);
+  font-size: var(--fs-caption);
+  font-weight: 700;
+}
+
+/* ----- Вміст шторки ----- */
+
+.group {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
   border: none;
-  border-bottom: 1px solid var(--black);
-  font-family: var(--font-family);
-  font-weight: 600;
-  font-size: 12px;
-  padding: 0px 0px 4px;
-  width: 74px;
-  height: 19px;
+}
+
+.groupTitle {
+  margin-bottom: var(--space-3);
+  padding: 0;
+  font-size: var(--fs-caption);
+  font-weight: 700;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.resetButton,
+.applyButton {
+  height: calc(var(--touch-target) + var(--space-2));
+  border-radius: var(--radius-md);
+  font-size: var(--fs-body);
   cursor: pointer;
 }
 
-@media screen and (min-width: 394px) {
-  .filters__block {
-    width: 320px;
-    padding: 16px 12px;
+.resetButton {
+  flex-shrink: 0;
+  min-width: 112px;
+  border: 1px solid var(--border-input);
+  background-color: var(--surface-card);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.applyButton {
+  flex-grow: 1;
+  border: none;
+  background-color: var(--brand-primary);
+  color: var(--text-on-brand);
+  font-weight: 700;
+}
+
+.applyButton:hover:not(:disabled) {
+  background-color: var(--brand-primary-hover);
+}
+
+.applyButton:disabled {
+  cursor: progress;
+}
+
+.resetButton:focus-visible,
+.applyButton:focus-visible {
+  outline: 2px solid var(--brand-dark);
+  outline-offset: 2px;
+}
+
+@media (min-width: 768px) {
+  .inner {
+    gap: var(--space-4);
   }
-}
 
-@media screen and (min-width: 768px) {
-}
+  .divider {
+    display: block;
+    flex-shrink: 0;
+    width: 1px;
+    height: var(--space-6);
+    background-color: var(--border-default);
+  }
 
-@media screen and (min-width: 1440px) {
-  .filter__toggle__btn,
-  .mobile__close {
+  .ingredient {
+    display: block;
+    flex-shrink: 0;
+    width: 220px;
+  }
+
+  .sheetToggle {
     display: none;
-  }
-
-  .filters__block {
-    display: flex;
-    position: static;
-    width: auto;
-    box-shadow: none;
-    border: none;
-    padding: 0;
-    background: none;
-    flex-direction: row-reverse;
-    align-items: center;
-    gap: 24px;
-  }
-
-  .select__block {
-    flex-direction: row;
-    gap: 24px;
-    width: auto;
   }
 }

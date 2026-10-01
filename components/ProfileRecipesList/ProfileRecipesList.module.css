@@ -1,9 +1,8 @@
 .grid {
-    margin-top: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    align-items: center;
+    margin-top: var(--space-4);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-5);
 }
 
 .gridItem {
@@ -20,7 +19,9 @@
 
 .meta {
     display: flex;
-    gap: 199px;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
 }
 
 .paginationWrapper {
@@ -40,13 +41,8 @@
         font-size: 40px;
     }
 
-    .meta {
-        gap: 542px;
-    }
-
     .grid {
-        flex-direction: row;
-        flex-wrap: wrap;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .gridItem {
@@ -56,8 +52,8 @@
 }
 
 @media (min-width: 1440px) {
-    .meta {
-        gap: 650px;
+    .grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
     .gridItem {

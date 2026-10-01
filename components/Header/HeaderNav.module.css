@@ -9,8 +9,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
-    height: 32px;
+    width: var(--touch-target);
+    height: var(--touch-target);
     padding: 0;
     background: transparent;
     border: none;
@@ -85,13 +85,14 @@
     letter-spacing: 0;
     text-decoration: none;
     cursor: pointer;
-    border-radius: 8px;
-    padding: 4px 4px;
+    border-radius: var(--radius-sm);
+    padding: var(--space-2) var(--space-3);
     transition: color 200ms ease, background-color 200ms ease, opacity 200ms ease;
 }
 
 .link:hover {
-    color: var(--text-link-inverse-hover);
+    color: var(--text-on-inverse);
+    background-color: var(--white-overlay-10);
 }
 
 .link:focus-visible {
@@ -104,11 +105,17 @@
 }
 
 .cta {
+    gap: var(--space-2);
     background-color: var(--brand-primary);
     color: var(--text-on-brand);
     padding: 12px 16px;
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     line-height: 19.5px;
+}
+
+.ctaIcon {
+    width: 18px;
+    height: 18px;
 }
 
 .mobileList .cta {
@@ -143,7 +150,7 @@
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background-color: var(--brand-primary);
+    background-color: var(--brand-accent);
     color: var(--text-on-brand);
     font-weight: 600;
     font-size: 14px;
@@ -175,8 +182,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 28px;
-    height: 28px;
+    width: 40px;
+    height: 40px;
     padding: 0;
     background: transparent;
     border: none;
@@ -202,6 +209,7 @@
 
     .desktopList {
         display: flex;
+        gap: var(--space-2);
     }
 
     .mobilePanel {
@@ -222,18 +230,21 @@
 
 @media (min-width: 1440px) {
     .desktopList {
-        gap: 32px;
+        gap: var(--space-2);
+    }
+
+    .link {
+        font-size: var(--fs-small);
     }
 }
 
+/* Активний пункт — «пігулка» замість підкреслення. */
 .linkActive {
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 6px;
+    background-color: var(--white-overlay-10);
 }
 
 .cta.linkActive {
-    text-decoration: none;
+    background-color: var(--brand-primary-hover);
 }
 
 .icon32 {

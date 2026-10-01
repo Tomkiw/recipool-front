@@ -1,0 +1,140 @@
+/* ===== CategoryChips ===== */
+
+.root {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.scroll {
+  flex-grow: 1;
+}
+
+.list {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.scroll .list {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.scroll .list::-webkit-scrollbar {
+  display: none;
+}
+
+/* Маска працює лише з альфою, колір тут значення не має. */
+.fadeRight .list {
+  mask-image: linear-gradient(to right, #000 calc(100% - var(--space-8)), transparent);
+}
+
+.fadeLeft .list {
+  mask-image: linear-gradient(to right, transparent, #000 var(--space-8));
+}
+
+.fadeLeft.fadeRight .list {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 var(--space-8),
+    #000 calc(100% - var(--space-8)),
+    transparent
+  );
+}
+
+.track {
+  display: inline-flex;
+  gap: var(--space-2);
+  /* Запас, щоб фокус-обвідка не обрізалась overflow контейнера. */
+  padding: var(--space-1);
+}
+
+.wrap .track {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+}
+
+.chip {
+  flex-shrink: 0;
+  min-height: 40px;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-pill);
+  background-color: var(--surface-card);
+  color: var(--text-primary);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease,
+    color var(--duration-fast) ease;
+}
+
+.chip:hover {
+  border-color: var(--border-strong);
+}
+
+.chip[aria-pressed='true'] {
+  border-color: var(--brand-dark);
+  background-color: var(--brand-dark);
+  color: var(--text-on-inverse);
+}
+
+.chip:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+}
+
+/* На тачскрінах список гортають пальцем, стрілки потрібні лише з мишею. */
+.arrow {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-pill);
+    background-color: var(--surface-card);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-float);
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+
+  .arrow:hover {
+    border-color: var(--border-strong);
+  }
+
+  .arrow:focus-visible {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+
+  .arrowLeft {
+    left: 0;
+  }
+
+  .arrowRight {
+    right: 0;
+  }
+
+  .arrowIcon {
+    width: 18px;
+  }
+}

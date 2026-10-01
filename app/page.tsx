@@ -13,14 +13,12 @@ export default async function App() {
 
   return (
     <>
-      <Hero />
+      <Hero totalRecipes={initialData.totalRecipes} />
       {/* 3. Передаємо СПРАВЖНІ дані замість порожніх заглушок */}
       <RecipeList
         initialRecipes={initialData.recipes}
         totalPages={initialData.totalPages}
         totalRecipes={initialData.totalRecipes}
-        searchQuery=""
-        currentCategory=""
       />
     </>
   );
