@@ -1,72 +1,146 @@
+/* ===== Hero (mobile-first: 375 → 768 → 1440) ===== */
+
 .hero {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  align-items: flex-end;
   width: 100%;
-  min-height: 513px;
-  padding-top: 35px;
-  background:
-    linear-gradient(to right, var(--hero-scrim-from), var(--hero-scrim-to)),
-    url('/images/banner-mob.jpg') no-repeat center center;
+  min-height: 480px;
+  padding: var(--space-8) 0 var(--space-6);
+  color: var(--text-on-inverse);
+  background-color: var(--surface-inverse);
+  /* На мобільному текст унизу, тож затемнюємо фото знизу вгору. */
+  background-image:
+    linear-gradient(180deg, var(--hero-scrim-to) 0%, var(--hero-scrim-from) 60%),
+    url('/images/banner-mob.jpg');
+  background-position: 70% center;
+  background-repeat: no-repeat;
   background-size: cover;
 }
 
-.hero__title {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 40px;
-  color: var(--white);
-  margin-bottom: 24px;
-  text-align: left;
-  max-width: 100%;
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
 }
 
-@media screen and (min-width: 394px) and (max-width: 767px) {
+.eyebrow {
+  font-size: var(--fs-caption);
+  font-weight: 700;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--brand-accent);
+}
+
+.title {
+  max-width: 640px;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-tight);
+  font-weight: 700;
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-on-inverse);
+}
+
+.subtitle {
+  max-width: 520px;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--text-on-inverse-muted);
+}
+
+.popular {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.popular::-webkit-scrollbar {
+  display: none;
+}
+
+.popularLabel {
+  flex-shrink: 0;
+  font-size: var(--fs-small);
+  color: var(--text-on-inverse-muted);
+}
+
+.chip {
+  flex-shrink: 0;
+  min-height: 36px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--divider-inverse);
+  border-radius: var(--radius-pill);
+  background-color: var(--white-overlay-10);
+  color: var(--text-on-inverse);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease,
+    color var(--duration-fast) ease;
+}
+
+.chip:hover {
+  border-color: var(--text-on-inverse);
+}
+
+.chip[aria-pressed='true'] {
+  border-color: var(--brand-primary);
+  background-color: var(--brand-primary);
+  color: var(--text-on-brand);
+}
+
+.chip:focus-visible {
+  outline: 2px solid var(--text-on-inverse);
+  outline-offset: 2px;
+}
+
+@media (min-width: 768px) {
   .hero {
     align-items: center;
-  }
-
-  .hero__title {
-    max-width: 329px;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .hero {
-    padding: 128px 0;
-    min-height: 443px;
-    align-items: flex-start;
+    padding: var(--space-8) 0;
     background-image:
-      linear-gradient(to right, var(--hero-scrim-from), var(--hero-scrim-to)),
+      linear-gradient(90deg, var(--hero-scrim-from) 0%, var(--hero-scrim-to) 100%),
       url('/images/banner-tab.jpg');
+    background-position: right center;
   }
 
-  .hero__title {
-    width: 470px;
-    font-weight: 600;
-    font-size: 48px;
-    line-height: 1.1;
-    margin-bottom: 24px;
+  .inner {
+    gap: var(--space-5);
+  }
+
+  .title {
+    font-size: var(--fs-h1);
+  }
+
+  .subtitle {
+    font-size: var(--fs-lead);
   }
 }
 
-@media screen and (min-width: 1440px) {
+@media (min-width: 1440px) {
   .hero {
+    min-height: 520px;
     background-image:
-      linear-gradient(to right, var(--hero-scrim-from), var(--hero-scrim-to)),
+      linear-gradient(90deg, var(--hero-scrim-from) 0%, var(--hero-scrim-to) 100%),
       url('/images/banner.jpg');
   }
 
-  .hero__title {
-    width: 493px;
+  .title {
+    font-size: var(--fs-display);
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolition: 192dpi) {
+/* @2x-версія є лише в десктопного банера, тому підміняємо її тільки від 1440px —
+   інакше retina-телефони вантажили б важкий десктопний файл. */
+@media (min-width: 1440px) and (-webkit-min-device-pixel-ratio: 2),
+  (min-width: 1440px) and (min-resolution: 192dpi) {
   .hero {
     background-image:
-      linear-gradient(to right, var(--hero-scrim-from), var(--hero-scrim-to)),
+      linear-gradient(90deg, var(--hero-scrim-from) 0%, var(--hero-scrim-to) 100%),
       url('/images/banner@2x.jpg');
   }
 }

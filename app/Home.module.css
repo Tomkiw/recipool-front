@@ -2,11 +2,12 @@
     flex: 1;
 }
 
+/* Ті самі бічні відступи, що й у хедера, щоб контент вирівнювався по логотипу. */
 .container {
-    width: 90%;
-    max-width: 1280px;
-    margin: 0px auto;
-    padding: 0 16px 16px;
+    width: 100%;
+    max-width: calc(var(--container-max) + 2 * var(--page-gutter));
+    margin: 0 auto;
+    padding: 0 var(--page-gutter);
 }
 
 .title {

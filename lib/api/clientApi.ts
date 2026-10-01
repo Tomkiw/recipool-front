@@ -1,6 +1,7 @@
 import { Recipe } from '@/types/recipe';
 import { nextServer } from './api';
 import { User } from '@/types/user';
+import { RECIPES_PER_PAGE } from '@/lib/constants/recipes';
 
 export type RegisterRequest = {
   name: string;
@@ -89,6 +90,7 @@ export interface FetchRecipesResponse {
 
 export interface FetchRecipesParams {
   page?: number;
+  perPage?: number;
   keyword?: string;
   category?: string;
   ingredient?: string;
@@ -99,13 +101,14 @@ export interface FetchRecipesParams {
 // роут перетворює відсутні параметри на undefined.
 export async function fetchRecipes({
   page = 1,
+  perPage = RECIPES_PER_PAGE,
   keyword,
   category,
   ingredient,
 }: FetchRecipesParams = {}): Promise<FetchRecipesResponse> {
   const params = {
     page,
-    perPage: 12,
+    perPage,
     keyword: keyword?.trim() || undefined,
     category: category?.trim() || undefined,
     ingredient: ingredient?.trim() || undefined,

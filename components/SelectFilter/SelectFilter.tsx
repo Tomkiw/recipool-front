@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useId } from 'react';
 
 import css from './SelectFilter.module.css';
 
@@ -9,6 +9,9 @@ interface SelectFiltersProps {
   placeholder: string;
   value: string;
   onChange: (value: string) => void;
+  label: string;
+  // У вузькій панелі фільтрів підпис лишаємо тільки для скрінрідерів.
+  isLabelHidden?: boolean;
 }
 
 function SelectFilter({
@@ -16,25 +19,50 @@ function SelectFilter({
   placeholder,
   value,
   onChange,
+  label,
+  isLabelHidden = false,
 }: SelectFiltersProps) {
+  const selectId = useId();
+
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     onChange(event.target.value);
   };
   return (
     <>
       <div className={css.filter__field}>
-        <select
-          className={css.filter__select}
-          value={value}
-          onChange={handleChange}
+        <label
+          htmlFor={selectId}
+          className={isLabelHidden ? 'visually-hidden' : css.filter__label}
         >
-          <option value="">{placeholder}</option>
-          {options.map((option, index) => (
-            <option key={index} value={option.name}>
-              {option.name}
-            </option>
-          ))}
-        </select>
+          {label}
+        </label>
+        <div className={css.filter__control}>
+          <select
+            id={selectId}
+            className={`${css.filter__select} ${value ? css.filter__selectActive : ''}`}
+            value={value}
+            onChange={handleChange}
+          >
+            <option value="">{placeholder}</option>
+            {options.map((option) => (
+              <option key={option.name} value={option.name}>
+                {option.name}
+              </option>
+            ))}
+          </select>
+          <svg
+            className={css.filter__chevron}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </div>
       </div>
     </>
   );

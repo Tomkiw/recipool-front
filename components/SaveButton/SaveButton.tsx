@@ -61,18 +61,23 @@ const SaveButton = ({ recipeId }: Props) => {
   return (
     <>
       <button
+        type="button"
         className={`${css.saveButton} ${isSaved ? css.saved : ''}`}
         onClick={handleClick}
         disabled={isPending}
+        aria-pressed={isSaved}
       >
         {isPending ? (
           <span className={css.spinner} />
         ) : (
           <>
-            <span>{isSaved ? 'Unsave' : 'Save'}</span>
-            <svg className={isSaved ? css.saveIconFilled : css.saveIcon}>
+            <svg
+              className={isSaved ? css.saveIconFilled : css.saveIcon}
+              aria-hidden="true"
+            >
               <use href={'/icons/icons.svg#icon-save'} />
             </svg>
+            <span>{isSaved ? 'Saved' : 'Save recipe'}</span>
           </>
         )}
       </button>

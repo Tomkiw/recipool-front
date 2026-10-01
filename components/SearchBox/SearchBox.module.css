@@ -1,170 +1,103 @@
+/* ===== SearchBox: одне поле з іконкою й кнопкою всередині (стоїть на темному Hero) ===== */
+
 .form {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+  max-width: 640px;
 }
 
-.searchWrapper {
-    position: relative;
-    width: 100%;
-    padding-bottom: 22px;
+.field {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
+  border: 2px solid transparent;
+  border-radius: var(--radius-lg);
+  background-color: var(--white);
+  box-shadow: var(--shadow-overlay);
+  transition: border-color var(--duration-fast) ease;
+}
+
+.field:focus-within {
+  border-color: var(--brand-primary);
+}
+
+.fieldError,
+.fieldError:focus-within {
+  border-color: var(--danger);
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 20px;
+  color: var(--text-muted);
 }
 
 .input {
-    width: 100%;
-    max-width: 100%;
-    height: 46px;
-    padding: 12px;
-    font-family: var(--font-family);
-    font-weight: 400;
-    font-size: 18px;
-    color: var(--text-primary);
-    border: 1px solid transparent;
-    border-radius: 8px;
-    outline: none;
-    box-sizing: border-box;
+  flex-grow: 1;
+  min-width: 0;
+  height: var(--touch-target);
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  /* 16px — менше iOS зумить сторінку при фокусі. */
+  font-size: var(--fs-body);
+  color: var(--text-primary);
 }
 
 .input::placeholder {
-    color: var(--gray-3);
+  color: var(--text-muted);
 }
 
-.submit__btn {
-    width: 100%;
-    height: 46px;
-    background-color: var(--light-brown);
-    color: var(--text-on-brand);
-    border: none;
-    border-radius: 8px;
-    font-family: var(--font-family);
-    font-size: 16px;
-    font-weight: 600;
-    text-transform: capitalize;
-    cursor: pointer;
-    transition: opacity 0.2s ease;
+.submit {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 96px;
+  height: var(--touch-target);
+  padding: 0 var(--space-4);
+  border: none;
+  border-radius: var(--radius-md);
+  background-color: var(--brand-primary);
+  /* Тільки темний текст: білий на бурштині має контраст лише 2.6:1. */
+  color: var(--text-on-brand);
+  font-size: var(--fs-body);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color var(--duration-fast) ease;
 }
 
-.submit__btn:hover {
-    background-color: var(--brown);
+.submit:hover:not(:disabled) {
+  background-color: var(--brand-primary-hover);
 }
 
-/* .error {
-  color: var(--red);
-  font-family: var(--second-family);
-  font-size: 14px;
-  margin-top: 6px;
-} */
+.submit:focus-visible {
+  outline: 2px solid var(--brand-dark);
+  outline-offset: 2px;
+}
 
+.submit:disabled {
+  cursor: progress;
+}
+
+/* Помилка стоїть на темному фоні Hero, тому світло-червона, а не --danger. */
 .error {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    color: var(--red);
-    font-family: var(--second-family);
-    font-size: 14px;
-    margin: 0;
-    line-height: 1.2;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  color: var(--danger-soft);
 }
 
-.input__error {
-    border-color: var(--red);
-    border-radius: 8px;
-}
+@media (min-width: 768px) {
+  .field {
+    padding-left: var(--space-5);
+  }
 
-.input__error::placeholder {
-    color: var(--red);
-}
-
-@media screen and (min-width: 394px) and (max-width: 767px) {
-    .form {
-        width: 329px;
-    }
-}
-
-@media screen and (min-width: 768px) {
-    .form {
-        flex-direction: row;
-        gap: 24px;
-        width: 671px;
-    }
-
-    .input {
-        width: 471px;
-        height: 50px;
-        font-size: 16px;
-        max-width: 100%;
-        height: 46px;
-        padding: 12px;
-        font-family: var(--font-family);
-        font-weight: 400;
-        font-size: 18px;
-        border: 1px solid transparent;
-        border-radius: 8px;
-        outline: none;
-        box-sizing: border-box;
-    }
-
-    .submit__btn {
-        width: 100%;
-        height: 46px;
-        background-color: var(--light-brown);
-        color: var(--white);
-        border: none;
-        border-radius: 8px;
-        font-family: var(--font-family);
-        font-size: 16px;
-        font-weight: 600;
-        text-transform: capitalize;
-        cursor: pointer;
-        transition: opacity 0.2s ease;
-    }
-
-    .error {
-        color: var(--red);
-        font-family: var(--second-family);
-        font-size: 14px;
-        margin-top: 6px;
-    }
-}
-
-@media screen and (min-width: 394px) and (max-width: 767px) {
-    .form {
-        width: 329px;
-    }
-}
-
-@media screen and (min-width: 768px) {
-    .form {
-        flex-direction: row;
-        gap: 24px;
-        width: 671px;
-    }
-
-    .input {
-        width: 471px;
-        height: 50px;
-        font-size: 16px;
-    }
-
-    .submit__btn {
-        width: 176px;
-        height: 50px;
-        font-size: 16px;
-    }
-}
-
-@media screen and (min-width: 1440px) {
-    .form {
-        width: 661px;
-        gap: 12px;
-    }
-
-    .input {
-        width: 459px;
-    }
-
-    .submit__btn {
-        width: 190px;
-    }
+  .submit {
+    min-width: 128px;
+    height: 48px;
+  }
 }

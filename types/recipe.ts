@@ -1,10 +1,11 @@
-import { Category } from './category';
 import { RecipeIngredient } from './ingredient';
 
 export interface Recipe {
   _id: string;
   title: string;
-  category: Category;
+  // Бекенд зберігає назву категорії рядком ("Beef"), а не об'єкт { _id, name }
+  // — див. recipool-back/docs/API_CONTRACT.md.
+  category: string;
   owner: string;
   area?: string;
   instructions: string;

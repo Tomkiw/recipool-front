@@ -1,47 +1,80 @@
+/* ===== Pagination (react-paginate) ===== */
+
 .pagination {
-    display: flex;
-    justify-content: center;
-    gap: 4px;
-    margin: 16px 0;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.pagination li {
-    border: 1px solid var(--border-subtle);
-    border-radius: 4px;
-    cursor: pointer;
-    min-width: 36px;
-    height: 36px;
-    transition: background-color 0.2s ease, color 0.2s ease;
+.item {
+  display: flex;
 }
 
-.pagination li a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    text-decoration: none;
-    color: var(--text-primary);
-    font-size: 14px;
+.link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 var(--space-2);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background-color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease,
+    color var(--duration-fast) ease;
 }
 
-.pagination li:hover {
-    background-color: var(--pagination-hover-bg);
+.link:hover {
+  background-color: var(--pagination-hover-bg);
 }
 
-.pagination li.active:hover {
-    background-color: var(--pagination-active);
+.link:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
 }
 
-.active {
-    background-color: var(--pagination-active);
-    border-color: var(--pagination-active);
+.active .link,
+.active .link:hover {
+  background-color: var(--pagination-active);
+  color: var(--text-on-inverse);
 }
 
-.active a {
-    color: var(--text-on-brand) !important;
-    font-weight: 500;
+.arrow {
+  border-color: var(--border-input);
+  background-color: var(--surface-card);
+}
+
+.arrowIcon {
+  width: 18px;
+}
+
+.break {
+  color: var(--text-muted);
+}
+
+.disabled .link,
+.disabled .link:hover {
+  border-color: var(--border-subtle);
+  background-color: var(--surface-card);
+  color: var(--text-faint);
+  cursor: not-allowed;
+}
+
+@media (min-width: 768px) {
+  .link {
+    min-width: var(--touch-target);
+    height: var(--touch-target);
+    font-size: var(--fs-body);
+  }
 }
